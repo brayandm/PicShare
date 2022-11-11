@@ -11,6 +11,14 @@ Social network to share pictures and make friends
 
 ## Installation instructions
 ```bash
+  git clone https://github.com/brayandm/PicShare.git
+```
+
+```bash
+  cd PicShare
+```
+
+```bash
   composer install
 ```
 

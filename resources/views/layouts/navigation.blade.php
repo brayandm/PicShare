@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
+                    <x-nav-link :href="route('profile.show')" :active="request()->routeIs('profile')">
                         {{ __('Profile') }}
                     </x-nav-link>
                 </div>
@@ -40,10 +40,10 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <form method="GET" action="{{ route('profile') }}">
+                        <form method="GET" action="{{ route('profile.show') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('profile')"
+                            <x-dropdown-link :href="route('profile.show')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Profile') }}
@@ -92,10 +92,10 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <form method="GET" action="{{ route('profile') }}">
+                <form method="GET" action="{{ route('profile.show') }}">
                     @csrf
 
-                    <x-responsive-nav-link :href="route('profile')"
+                    <x-responsive-nav-link :href="route('profile.show')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Profile') }}

@@ -6,7 +6,7 @@ use App\Models\Post;
 
 class PostService
 {
-    public function getPosts()
+    public function getAll()
     {
         return Post::all();
     }

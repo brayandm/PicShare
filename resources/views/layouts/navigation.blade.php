@@ -16,6 +16,12 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
+                        {{ __('Profile') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -34,6 +40,16 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <form method="GET" action="{{ route('profile') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('profile')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+                        </form>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -76,6 +92,16 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <form method="GET" action="{{ route('profile') }}">
+                    @csrf
+
+                    <x-responsive-nav-link :href="route('profile')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                </form>
+
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

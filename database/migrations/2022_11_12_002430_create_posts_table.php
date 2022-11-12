@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('person_id')->constrained();
+            $table->string('header');
+            $table->string('picture');
+            $table->string('text');
+            $table->integer('likes');
             $table->timestamps();
         });
     }

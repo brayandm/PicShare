@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('people', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->string('picture');
+            $table->string('description');
+            $table->string('birthdate');
             $table->timestamps();
         });
     }

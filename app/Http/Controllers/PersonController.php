@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\PersonService;
+use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
@@ -13,8 +14,25 @@ class PersonController extends Controller
         $this->personService = $personService;
     }
 
-    public function getProfile()
+    public function get()
     {
-        return view('profile', ['person' => $this->personService->getPerson()]);
+        return view('profile.show', ['person' => $this->personService->get()]);
+    }
+
+    public function edit()
+    {
+        return view('profile.edit', ['person' => $this->personService->get()]);
+    }
+
+    public function update(Request $request)
+    {
+        $validated = $request->validate([
+            'description' => 'max:255',
+            'birthdate' => 'date',
+        ]);
+
+        $this->personService->update($validated);
+
+        return redirect()->route('profile.show');
     }
 }

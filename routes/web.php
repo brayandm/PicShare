@@ -20,8 +20,10 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/dashboard', [PostController::class, 'getPosts'])->name('dashboard');
-    Route::get('/dashboard/profile', [PersonController::class, 'getProfile'])->name('profile');
+    Route::get('/dashboard', [PostController::class, 'getAll'])->name('dashboard');
+    Route::get('/dashboard/profile/show', [PersonController::class, 'get'])->name('profile.show');
+    Route::get('/dashboard/profile/edit', [PersonController::class, 'edit'])->name('profile.edit');
+    Route::put('/dashboard/profile/edit', [PersonController::class, 'update'])->name('profile.update');
 });
 
 require __DIR__.'/auth.php';

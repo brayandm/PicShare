@@ -11,8 +11,8 @@ class PersonService
         return Auth::user()->person;
     }
 
-    public function update($fiels)
+    public function update($fields)
     {
-        Auth::user()->person->update($fiels);
+        Auth::user()->person->update($fields);
     }
 }

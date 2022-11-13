@@ -17,4 +17,9 @@ class PostController extends Controller
     {
         return view('dashboard', ['posts' => $this->postService->getAll()]);
     }
+
+    public function get()
+    {
+        return view('myposts.show', ['posts' => $this->postService->get()]);
+    }
 }

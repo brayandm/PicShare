@@ -18,8 +18,14 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('profile.show')" :active="request()->routeIs('profile')">
+                    <x-nav-link :href="route('profile.show')" :active="request()->routeIs('profile.show')">
                         {{ __('Profile') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('myposts.show')" :active="request()->routeIs('myposts.show')">
+                        {{ __('My Posts') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -47,6 +53,16 @@
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Profile') }}
+                            </x-dropdown-link>
+                        </form>
+
+                        <form method="GET" action="{{ route('myposts.show') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('myposts.show')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('My Posts') }}
                             </x-dropdown-link>
                         </form>
 
@@ -99,6 +115,16 @@
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                </form>
+
+                <form method="GET" action="{{ route('myposts.show') }}">
+                    @csrf
+
+                    <x-responsive-nav-link :href="route('myposts.show')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('My Posts') }}
                     </x-responsive-nav-link>
                 </form>
 

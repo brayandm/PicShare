@@ -21,9 +21,10 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', [PostController::class, 'getAll'])->name('dashboard');
-    Route::get('/dashboard/profile/show', [PersonController::class, 'get'])->name('profile.show');
-    Route::get('/dashboard/profile/edit', [PersonController::class, 'edit'])->name('profile.edit');
-    Route::put('/dashboard/profile/edit', [PersonController::class, 'update'])->name('profile.update');
+    Route::get('/profile/show', [PersonController::class, 'get'])->name('profile.show');
+    Route::get('/profile/edit', [PersonController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/edit', [PersonController::class, 'update'])->name('profile.update');
+    Route::get('/myposts/show', [PostController::class, 'get'])->name('myposts.show');
 });
 
 require __DIR__.'/auth.php';

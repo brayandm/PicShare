@@ -21,12 +21,10 @@
                             <input type="text" id="header" name="header" value="{{ $post->header }}"
                                 class="mb-5"><br>
 
-
                             <label for="text" class="text-xl">Text:</label><br>
                             <textarea id="text" name="text" class="mb-5 p-3" rows="5">{{$post->text}}</textarea><br>
 
-
-                            <input type="submit" value="Submit" class="self-end border p-2 rounded-xl bg-gray-200">
+                            <button type="submit" class="self-end border p-2 rounded-xl bg-gray-200">Edit</button>
                         </div>
 
                     </form>

@@ -40,4 +40,11 @@ class PostController extends Controller
 
         return redirect()->route('myposts.show');
     }
+
+    public function delete($id)
+    {
+        $this->postService->delete($id);
+
+        return redirect()->route('myposts.show');
+    }
 }

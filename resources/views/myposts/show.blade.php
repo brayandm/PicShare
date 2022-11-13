@@ -14,7 +14,19 @@
                         <h1 class="mb-10 text-xl">{{ $post->header }}</h1>
                         <p class="mb-5">{{ $post->text }}</p>
                         <p class="mb-10">Likes: {{ $post->likes }}</p>
-                        <a href={{route('myposts.edit', [$post->id])}} class="self-end border p-2 rounded-xl bg-gray-200">Edit Post</a>
+
+                        <div class="self-end flex flex-row">
+                            <a href={{ route('myposts.edit', [$post->id]) }}
+                                class="border p-2 rounded-xl bg-gray-200 mr-3">Edit</a>
+
+                            <form action={{ route('myposts.delete', ['id' => $post->id]) }} method="POST">
+
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="border p-2 rounded-xl bg-gray-200">Delete</button>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             @endforeach

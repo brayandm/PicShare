@@ -24,7 +24,7 @@
                             <input type="date" id="birthdate" name="birthdate" value="{{ $person->birthdate }}"
                                 class="mb-5"><br>
 
-                            <input type="submit" value="Submit" class="self-end border p-2 rounded-xl bg-gray-200">
+                            <button type="submit" class="border p-2 rounded-xl bg-gray-200">Edit</button>
                         </div>
 
                     </form>

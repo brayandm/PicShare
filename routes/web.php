@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/myposts/show', [PostController::class, 'getForCurrentPerson'])->name('myposts.show');
     Route::get('/myposts/edit/{id}', [PostController::class, 'edit'])->name('myposts.edit');
     Route::put('/myposts/edit/{id}', [PostController::class, 'update'])->name('myposts.update');
+    Route::delete('/myposts/show/{id}', [PostController::class, 'delete'])->name('myposts.delete');
 });
 
 require __DIR__.'/auth.php';

@@ -26,4 +26,9 @@ class PostService
     {
         Post::find($id)->update($fields);
     }
+
+    public function delete($id)
+    {
+        Post::find($id)->delete();
+    }
 }

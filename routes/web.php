@@ -36,7 +36,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 });
 
 Route::group(['middleware' => ['auth', 'verified', 'isAdmin']], function () {
-    Route::get('/users/show', [AdminController::class, 'getUsers'])->name('users.show');
+    Route::get('/users', [AdminController::class, 'getUsers'])->name('users.show');
+    Route::delete('/users/{id}', [AdminController::class, 'deleteUser'])->name('users.delete');
 });
 
 require __DIR__.'/auth.php';

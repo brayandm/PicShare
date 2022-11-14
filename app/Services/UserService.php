@@ -10,4 +10,19 @@ class UserService
     {
         return User::all();
     }
+
+    public function delete($id)
+    {
+        $user = User::find($id);
+        $person = $user?->person;
+        $posts = $person?->posts;
+
+        if ($posts) {
+            foreach ($posts as $post) {
+                $post->delete();
+            }
+        }
+        $person?->delete();
+        $user?->delete();
+    }
 }

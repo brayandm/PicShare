@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('person_person', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('follower_id');
+            $table->foreign('follower_id')->references('id')->on('people')->onDelete('cascade');
             $table->unsignedBigInteger('following_id');
+            $table->foreign('following_id')->references('id')->on('people')->onDelete('cascade');
             $table->timestamps();
         });
     }

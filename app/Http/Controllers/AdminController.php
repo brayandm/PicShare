@@ -15,6 +15,13 @@ class AdminController extends Controller
 
     public function getUsers()
     {
-        return view('user.show', ['users' => $this->userService->getAll()]);
+        return view('users.show', ['users' => $this->userService->getAll()]);
+    }
+
+    public function deleteUser($id)
+    {
+        $this->userService->delete($id);
+
+        return redirect()->route('users.show');
     }
 }

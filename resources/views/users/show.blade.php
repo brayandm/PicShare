@@ -16,13 +16,16 @@
                             <br>
                             <h1 class="text-lg">Email:</h1>
                             <p>{{ $user->email }}</p>
+                            <br>
 
-                            <form action={{ route('users.delete', ['id' => $user->id]) }} method="POST">
+                            <div class="self-end">
+                                <form action={{ route('users.delete', ['id' => $user->id]) }} method="POST">
 
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="border p-2 rounded-xl bg-gray-200">Delete</button>
-                            </form>
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="border p-2 rounded-xl bg-gray-200">Delete</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 @endif

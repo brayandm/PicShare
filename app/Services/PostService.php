@@ -31,4 +31,10 @@ class PostService
     {
         Post::find($id)->delete();
     }
+
+    public function create($fields)
+    {
+        $fields['person_id'] = Auth::user()->person->id;
+        Post::create($fields);
+    }
 }

@@ -28,6 +28,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/myposts/edit/{id}', [PostController::class, 'edit'])->name('myposts.edit');
     Route::put('/myposts/edit/{id}', [PostController::class, 'update'])->name('myposts.update');
     Route::delete('/myposts/show/{id}', [PostController::class, 'delete'])->name('myposts.delete');
+    Route::get('/myposts/create', [PostController::class, 'create'])->name('myposts.create');
+    Route::post('/myposts/create', [PostController::class, 'store'])->name('myposts.store');
 });
 
 require __DIR__.'/auth.php';

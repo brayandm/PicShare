@@ -47,4 +47,21 @@ class PostController extends Controller
 
         return redirect()->route('myposts.show');
     }
+
+    public function create()
+    {
+        return view('myposts.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'header' => 'max:255',
+            'text' => 'max:255',
+        ]);
+
+        $this->postService->create($validated);
+
+        return redirect()->route('myposts.show');
+    }
 }

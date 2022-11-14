@@ -64,4 +64,11 @@ class PostController extends Controller
 
         return redirect()->route('myposts.show');
     }
+
+    public function like($id)
+    {
+        $this->postService->like($id);
+
+        return redirect()->route('dashboard');
+    }
 }

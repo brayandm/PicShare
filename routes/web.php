@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', [PostController::class, 'getAll'])->name('dashboard');
+    Route::put('/dashboard/{id}', [PostController::class, 'like'])->name('dashboard.like');
     Route::get('/profile/show', [PersonController::class, 'get'])->name('profile.show');
     Route::get('/profile/edit', [PersonController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/edit', [PersonController::class, 'update'])->name('profile.update');

@@ -37,4 +37,13 @@ class PostService
         $fields['person_id'] = Auth::user()->person->id;
         Post::create($fields);
     }
+
+    public function like($id)
+    {
+        $post = Post::find($id);
+
+        $post->update([
+            'likes' => $post->likes + 1,
+        ]);
+    }
 }

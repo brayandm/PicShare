@@ -13,7 +13,17 @@
                         <p class="mb-5 text-end">{{ $post->person->user->name }}</p>
                         <h1 class="mb-10 text-xl">{{ $post->header }}</h1>
                         <p class="mb-5">{{ $post->text }}</p>
-                        <p>Likes: {{ $post->likes }}</p>
+                        <div class="flex flex-row items-center">
+                            <p class="pr-3">{{ $post->likes }}</p>
+                            <form action={{ route('dashboard.like', ['id' => $post->id]) }} method="POST">
+
+                                @csrf
+                                @method('put')
+
+                                <button type="submit" class="border p-2 rounded-xl bg-gray-200">Like</button>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
             @endforeach

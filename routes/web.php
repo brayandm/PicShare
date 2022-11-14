@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::delete('/myposts/show/{id}', [PostController::class, 'delete'])->name('myposts.delete');
     Route::get('/myposts/create', [PostController::class, 'create'])->name('myposts.create');
     Route::post('/myposts/create', [PostController::class, 'store'])->name('myposts.store');
+});
+
+Route::group(['middleware' => ['auth', 'verified', 'isAdmin']], function () {
+    Route::get('/users/show', [AdminController::class, 'getUsers'])->name('users.show');
 });
 
 require __DIR__.'/auth.php';

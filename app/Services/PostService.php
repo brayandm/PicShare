@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PostService
 {
@@ -42,8 +43,45 @@ class PostService
     {
         $post = Post::find($id);
 
-        $post->update([
-            'likes' => $post->likes + 1,
-        ]);
+        if ($post->likedPeople()->find(Auth::user()->person->id)) {
+            return;
+        }
+
+        DB::beginTransaction();
+
+        try {
+            $post->likedPeople()->attach(Auth::user()->person->id);
+
+            $post->update([
+                'likes' => $post->likes + 1,
+            ]);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
+    }
+
+    public function unlike($id)
+    {
+        $post = Post::find($id);
+
+        if (! $post->likedPeople()->find(Auth::user()->person->id)) {
+            return;
+        }
+
+        DB::beginTransaction();
+
+        try {
+            $post->likedPeople()->detach(Auth::user()->person->id);
+
+            $post->update([
+                'likes' => $post->likes - 1,
+            ]);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
     }
 }

@@ -21,6 +21,11 @@ class Person extends Model
         return $this->hasMany(Post::class);
     }
 
+    public function likedPosts()
+    {
+        return $this->belongsToMany(Post::class, 'likes', 'person_id', 'post_id');
+    }
+
     public function followers()
     {
         return $this->belongsToMany(Person::class, 'person_person', 'following_id', 'follower_id');

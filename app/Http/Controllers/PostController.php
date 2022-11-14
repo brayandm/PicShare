@@ -71,4 +71,11 @@ class PostController extends Controller
 
         return redirect()->route('dashboard');
     }
+
+    public function unlike($id)
+    {
+        $this->postService->unlike($id);
+
+        return redirect()->route('dashboard');
+    }
 }

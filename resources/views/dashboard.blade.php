@@ -15,14 +15,25 @@
                         <p class="mb-5">{{ $post->text }}</p>
                         <div class="flex flex-row items-center">
                             <p class="pr-3">{{ $post->likes }}</p>
-                            <form action={{ route('dashboard.like', ['id' => $post->id]) }} method="POST">
+                            @if ($post->likedPeople()->find(Auth::user()->person->id))
+                                <form action={{ route('dashboard.unlike', ['id' => $post->id]) }} method="POST">
 
-                                @csrf
-                                @method('put')
+                                    @csrf
+                                    @method('delete')
 
-                                <button type="submit" class="border p-2 rounded-xl bg-gray-200">Like</button>
+                                    <button type="submit" class="border p-2 rounded-xl bg-gray-200">Unlike</button>
 
-                            </form>
+                                </form>
+                            @else
+                                <form action={{ route('dashboard.like', ['id' => $post->id]) }} method="POST">
+
+                                    @csrf
+                                    @method('post')
+
+                                    <button type="submit" class="border p-2 rounded-xl bg-gray-200">Like</button>
+
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>

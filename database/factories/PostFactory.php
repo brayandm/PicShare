@@ -20,7 +20,7 @@ class PostFactory extends Factory
             'person_id' => \App\Models\Person::factory()->create(),
             'header' => fake()->text(50),
             'text' => fake()->text(200),
-            'likes' => fake()->randomNumber(2),
+            'likes' => 0,
         ];
     }
 }

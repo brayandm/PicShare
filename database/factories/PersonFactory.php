@@ -17,7 +17,6 @@ class PersonFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => \App\Models\User::factory()->create(),
             'description' => fake()->text(200),
             'birthdate' => fake()->date(),
         ];

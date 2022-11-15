@@ -15,7 +15,7 @@
                 </div>
             </a>
             @php
-                $posts = collect($posts)->sortByDesc('updated_at');
+                $posts = collect($posts)->sortByDesc('created_at');
             @endphp
             @foreach ($posts as $post)
                 <div class="mb-5 w-1/2 mx-auto bg-white overflow-hidden shadow-sm sm:rounded-lg">

@@ -25,16 +25,16 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        \App\Models\Person::factory(10)->create();
-
-        $examplePerson = \App\Models\Person::factory()->create([
-            'user_id' => $exampleUser,
-        ]);
-
-        \App\Models\Post::factory(10)->create();
+        $users = \App\Models\User::factory(5)->create();
 
         \App\Models\Post::factory(3)->create([
-            'person_id' => $examplePerson,
+            'person_id' => $exampleUser->person->id,
         ]);
+
+        foreach ($users as $user) {
+            \App\Models\Post::factory(1)->create([
+                'person_id' => $user->person->id,
+            ]);
+        }
     }
 }

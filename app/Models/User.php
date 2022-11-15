@@ -44,6 +44,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            if (! $user->is_admin) {
+                Person::create([
+                    'user_id' => $user->id,
+                ]);
+            }
+        });
+    }
+
     public function person()
     {
         return $this->hasOne(Person::class);

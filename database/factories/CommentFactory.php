@@ -17,7 +17,6 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'post_id' => \App\Models\Post::factory()->create(),
             'text' => fake()->text(200),
         ];
     }

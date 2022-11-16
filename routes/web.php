@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,8 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', [PostController::class, 'getAll'])->name('dashboard');
     Route::post('/dashboard/{id}', [PostController::class, 'like'])->name('dashboard.like');
+    Route::get('/dashboard/{type}/{id}/comment', [CommentController::class, 'create'])->name('dashboard.comment.create');
+    Route::post('/dashboard/{type}/{id}/comment', [CommentController::class, 'store'])->name('dashboard.comment.store');
     Route::delete('/dashboard/{id}', [PostController::class, 'unlike'])->name('dashboard.unlike');
     Route::get('/profile/show', [PersonController::class, 'get'])->name('profile.show');
     Route::get('/profile/edit', [PersonController::class, 'edit'])->name('profile.edit');

@@ -28,6 +28,6 @@ class Post extends Model
 
     public function likedPeople()
     {
-        return $this->belongsToMany(Post::class, 'likes', 'post_id', 'person_id');
+        return $this->belongsToMany(Person::class, 'likes', 'post_id', 'person_id');
     }
 }

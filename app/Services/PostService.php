@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\DB;
 
 class PostService
 {
-    public function getAll()
+    public function getAll($pageSize)
     {
-        return Post::all();
+        return Post::orderByDesc('created_at')->paginate($pageSize);
     }
 
     public function getForCurrentPerson()

@@ -8,9 +8,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if (!Auth::user()->is_admin)
-                @php
-                    $posts = collect($posts)->sortByDesc('created_at');
-                @endphp
+
+                {{ $posts->links() }}
 
                 @foreach ($posts as $post)
                     <div class="mt-8 w-1/2 mx-auto bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -77,11 +76,12 @@
                     @endphp
 
                     @foreach ($comments as $comment)
-                        <div style="width:40%" class="mx-auto">
+                        <div style="width:40%"z class="mx-auto">
                             <div class="mt-1 w-full bg-white overflow-hidden shadow-sm sm:rounded-lg"
-                                style="margin-left:{{($comment[1]-1)*50}}px">
+                                style="margin-left:{{ ($comment[1] - 1) * 50 }}px">
                                 <div class="p-6 bg-gray-300 border-b border-gray-200">
-                                    <p> <b><u>{{ App\Models\Person::find($comment[0]->person_id)->user->name }}:</u></b></p>
+                                    <p> <b><u>{{ App\Models\Person::find($comment[0]->person_id)->user->name }}:</u></b>
+                                    </p>
                                     <br>
                                     <p> {{ $comment[0]->text }}</p>
                                     <div class="flex flex-col">
@@ -93,6 +93,8 @@
                         </div>
                     @endforeach
                 @endforeach
+
+                {{ $posts->links() }}
             @else
                 <div class="mb-5 w-1/2 mx-auto bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">

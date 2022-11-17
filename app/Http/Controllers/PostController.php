@@ -16,7 +16,7 @@ class PostController extends Controller
 
     public function getAll()
     {
-        return view('dashboard', ['posts' => $this->postService->getAll()]);
+        return view('dashboard', ['posts' => $this->postService->getAll(5)]);
     }
 
     public function getForCurrentPerson()

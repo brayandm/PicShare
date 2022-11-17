@@ -77,7 +77,7 @@
                     @endphp
 
                     @foreach ($comments as $comment)
-                        <div style="width:500px" class="mx-auto">
+                        <div style="width:40%" class="mx-auto">
                             <div class="mt-1 w-full bg-white overflow-hidden shadow-sm sm:rounded-lg"
                                 style="margin-left:{{($comment[1]-1)*50}}px">
                                 <div class="p-6 bg-gray-300 border-b border-gray-200">

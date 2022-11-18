@@ -20,6 +20,8 @@
                         </div>
                     @endif
 
+                    <br>
+
                     <h1 class="text-2xl mb-10"> {{ $person->user->name }}</h1>
 
                     <form action={{ route('profile.edit') }} method="POST">

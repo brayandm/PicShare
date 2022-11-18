@@ -20,6 +20,8 @@
                         </div>
                     @endif
 
+                    <br>
+
                     <form action={{ route('dashboard.comment.store', ['id' => $id, 'type' => $type]) }} method="POST">
 
                         @csrf

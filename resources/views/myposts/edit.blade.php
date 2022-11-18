@@ -20,6 +20,8 @@
                         </div>
                     @endif
 
+                    <br>
+
                     <h1 class="text-2xl mb-10"> {{ $post->person->user->name }}</h1>
 
                     <form action={{ route('myposts.update', ['id' => $post->id]) }} method="POST">

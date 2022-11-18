@@ -63,5 +63,17 @@ class DatabaseSeeder extends Seeder
                 'comment_id' => $comment->id,
             ]);
         }
+
+        for ($i = 0; $i < 25; $i++) {
+            $person = $people[rand(0, count($people) - 1)];
+
+            $post = $posts[rand(0, count($posts) - 1)];
+
+            if (! $post->likedPeople()->pluck('person_id')->contains($person->id)) {
+                $post->likedPeople()->attach($person);
+                $post->likes++;
+                $post->save();
+            }
+        }
     }
 }

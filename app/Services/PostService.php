@@ -13,7 +13,7 @@ class PostService
 {
     public function getAll($pageSize)
     {
-        return Post::orderByDesc('created_at')->paginate($pageSize);
+        return Post::orderByDesc('created_at')->with('person.user')->paginate($pageSize);
     }
 
     public function getForCurrentPerson()

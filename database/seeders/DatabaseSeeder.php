@@ -32,8 +32,46 @@ class DatabaseSeeder extends Seeder
         ]);
 
         foreach ($users as $user) {
-            \App\Models\Post::factory(1)->create([
+            \App\Models\Post::factory()->create([
                 'person_id' => $user->person->id,
+            ]);
+        }
+
+        $posts = \App\Models\Post::all();
+        $people = \App\Models\Person::all();
+
+        for ($i = 0; $i < 20; $i++) {
+            $person = $people[rand(0, count($people) - 1)];
+
+            $post = $posts[rand(0, count($posts) - 1)];
+
+            \App\Models\Comment::factory()->create([
+                'person_id' => $person->id,
+                'post_id' => $post->id,
+            ]);
+        }
+
+        for ($i = 0; $i < 10; $i++) {
+            $person = $people[rand(0, count($people) - 1)];
+
+            $post = $posts[rand(0, count($posts) - 1)];
+
+            \App\Models\Comment::factory()->create([
+                'person_id' => $person->id,
+                'post_id' => $post->id,
+            ]);
+        }
+
+        for ($i = 0; $i < 20; $i++) {
+            $person = $people[rand(0, count($people) - 1)];
+
+            $comments = \App\Models\Comment::all();
+
+            $comment = $comments[rand(0, count($comments) - 1)];
+
+            \App\Models\Comment::factory()->create([
+                'person_id' => $person->id,
+                'comment_id' => $comment->id,
             ]);
         }
     }

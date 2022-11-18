@@ -40,17 +40,6 @@ class DatabaseSeeder extends Seeder
         $posts = \App\Models\Post::all();
         $people = \App\Models\Person::all();
 
-        for ($i = 0; $i < 20; $i++) {
-            $person = $people[rand(0, count($people) - 1)];
-
-            $post = $posts[rand(0, count($posts) - 1)];
-
-            \App\Models\Comment::factory()->create([
-                'person_id' => $person->id,
-                'post_id' => $post->id,
-            ]);
-        }
-
         for ($i = 0; $i < 10; $i++) {
             $person = $people[rand(0, count($people) - 1)];
 

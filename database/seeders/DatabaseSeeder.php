@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
         $posts = \App\Models\Post::all();
         $people = \App\Models\Person::all();
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 15; $i++) {
             $person = $people[rand(0, count($people) - 1)];
 
             $post = $posts[rand(0, count($posts) - 1)];

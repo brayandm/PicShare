@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\PostService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -60,9 +61,18 @@ class PostController extends Controller
             'text' => 'max:255',
         ]);
 
-        $this->postService->create($validated);
+        $post = $this->postService->create($validated);
+
+        if ($request->picture) {
+            $this->postService->savePicture($post->id, $request->file('picture'));
+        }
 
         return redirect()->route('myposts.show');
+    }
+
+    public function getPicture($picture)
+    {
+        return Storage::get('private/pictures/'.$picture);
     }
 
     public function like($id)

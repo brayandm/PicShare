@@ -13,14 +13,14 @@
 
                 @foreach ($posts as $post)
                     <div class="mt-8 w-1/2 mx-auto bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6 bg-white border-b border-gray-200">
+                        <div class="flex flex-col content-center p-6 bg-white border-b border-gray-200">
                             <p class="mb-5 text-end">{{ (new Datetime($post->created_at))->format('Y-m-d H:i') }}</p>
                             <p class="mb-5 text-end">{{ $post->person->user->name }}</p>
-                            <h1 class="mb-10 text-xl">{{ $post->header }}</h1>
+                            <h1 class="mb-10 text-xl self-center text-justify">{{ $post->header }}</h1>
                             @if ($post->picture)
-                                <img class="mb-5" src={{route('picture.get', ['picture' => $post->picture])}} alt="picture" width="300" height="300">
+                                <img class="mb-5 self-center" src={{route('picture.get', ['picture' => $post->picture])}} alt="picture" width="300" height="300">
                             @endif
-                            <p class="mb-5">{{ $post->text }}</p>
+                            <p class="mb-5 self-center text-justify">{{ $post->text }}</p>
                             <div class="flex flex-row items-center">
                                 <p class="pr-3">Likes: {{ $post->likes }}</p>
                                 @if ($post->likedPeople()->find(Auth::user()->person->id))

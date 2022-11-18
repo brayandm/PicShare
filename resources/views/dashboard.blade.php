@@ -17,9 +17,12 @@
                             <p class="mb-5 text-end">{{ (new Datetime($post->created_at))->format('Y-m-d H:i') }}</p>
                             <p class="mb-5 text-end">{{ $post->person->user->name }}</p>
                             <h1 class="mb-10 text-xl">{{ $post->header }}</h1>
+                            @if ($post->picture)
+                                <img class="mb-5" src={{route('picture.get', ['picture' => $post->picture])}} alt="picture" width="300" height="300">
+                            @endif
                             <p class="mb-5">{{ $post->text }}</p>
                             <div class="flex flex-row items-center">
-                                <p class="pr-3">{{ $post->likes }}</p>
+                                <p class="pr-3">Likes: {{ $post->likes }}</p>
                                 @if ($post->likedPeople()->find(Auth::user()->person->id))
                                     <form action={{ route('dashboard.unlike', ['id' => $post->id]) }} method="POST">
 

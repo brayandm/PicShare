@@ -28,9 +28,17 @@ class PostFactory extends Factory
 
     public function fakePicture()
     {
-        $picture = UploadedFile::fake()->image('dummy.jpg');
+        $picture = file_get_contents('https://source.unsplash.com/random/300x300');
 
-        $filename = Storage::putFile('private/pictures/', $picture);
+        $file = fopen('storage/app/private/temp/picture.jpg', 'w');
+
+        fwrite($file, $picture);
+
+        $file = new UploadedFile('storage/app/private/temp/picture.jpg', 'picture.jpg');
+
+        $filename = Storage::putFile('private/pictures/', $file);
+
+        unlink('storage/app/private/temp/picture.jpg');
 
         $dir = explode('/', $filename);
 

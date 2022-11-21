@@ -42,6 +42,12 @@
                             </form>
                         </div>
 
+                        <div class="flex flex-row">
+                            @foreach ($post->tags()->get() as $tag)
+                                <div class="border p-2 rounded-xl bg-gray-200 mr-3">{{ $tag->keyword }}</div>
+                            @endforeach
+                        </div>
+
                     </div>
                 </div>
             @endforeach

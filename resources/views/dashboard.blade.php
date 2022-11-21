@@ -18,7 +18,9 @@
                             <p class="mb-5 text-end">{{ $post->person->user->name }}</p>
                             <h1 class="mb-10 text-xl self-center text-justify">{{ $post->header }}</h1>
                             @if ($post->picture)
-                                <img class="mb-5 self-center" src={{route('picture.get', ['picture' => $post->picture])}} alt="picture" width="300" height="300">
+                                <img class="mb-5 self-center"
+                                    src={{ route('picture.get', ['picture' => $post->picture]) }} alt="picture"
+                                    width="300" height="300">
                             @endif
                             <p class="mb-5 self-center text-justify">{{ $post->text }}</p>
                             <div class="flex flex-row items-center">
@@ -49,6 +51,11 @@
                                     class="self-end border p-2 rounded-xl bg-gray-200">Comment</a>
                             </div>
 
+                            <div class="flex flex-row">
+                                @foreach ($post->tags()->get() as $tag)
+                                    <div class="border p-2 rounded-xl bg-gray-200 mr-3">{{ $tag->keyword }}</div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                     @php

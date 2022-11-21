@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
         foreach ($posts as $post) {
             shuffle($tags);
 
-            $amount = rand(0, 3);
+            $amount = rand(0, 5);
 
             for ($i = 0; $i < $amount; $i++) {
                 $post->tags()->attach($tags[$i]['id']);

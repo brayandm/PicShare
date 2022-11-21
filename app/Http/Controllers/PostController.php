@@ -35,9 +35,14 @@ class PostController extends Controller
         $validated = $request->validate([
             'header' => 'max:255',
             'text' => 'max:255',
+            'tags' => 'max:255',
         ]);
 
-        $this->postService->update($id, $validated);
+        $post = $this->postService->update($id, $validated);
+
+        // if ($request->picture) {
+        //     $this->postService->savePicture($post->id, $request->file('picture'));
+        // }
 
         return redirect()->route('myposts.show');
     }
@@ -59,6 +64,7 @@ class PostController extends Controller
         $validated = $request->validate([
             'header' => 'max:255',
             'text' => 'max:255',
+            'tags' => 'max:255',
         ]);
 
         $post = $this->postService->create($validated);

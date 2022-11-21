@@ -37,6 +37,9 @@
                             <label for="text" class="text-xl">Text:</label><br>
                             <textarea id="text" name="text" class="mb-5 p-3" rows="5"></textarea><br>
 
+                            <label for="header" class="text-xl">Tags:</label  el><br>
+                            <input type="text" id="tags" name="tags" value="" class="mb-5"><br>
+
 
                             <button type="submit" class="self-end border p-2 rounded-xl bg-gray-200">Create</button>
                         </div>

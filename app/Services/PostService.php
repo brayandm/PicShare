@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Post;
+use App\Models\Tag;
 use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,36 @@ class PostService
 
     public function update($id, $fields)
     {
-        Post::find($id)->update($fields);
+        $post = Post::find($id);
+
+        if ($post->person_id != Auth::user()->person->id) {
+            return;
+        }
+
+        $keywords = collect(explode(',', $fields['tags']))->map(fn ($k) => ucfirst(trim($k)));
+
+        $tags = [];
+
+        foreach ($keywords as $keyword) {
+            $tags[] = Tag::firstOrCreate(['keyword' => $keyword]);
+        }
+
+        $post->update([
+            'header' => $fields['header'],
+            'text' => $fields['text'],
+        ]);
+
+        foreach ($post->tags()->get() as $tag) {
+            $post->tags()->detach($tag->id);
+        }
+
+        foreach ($tags as $tag) {
+            if (! $post->tags()->find($tag['id'])) {
+                $post->tags()->attach($tag['id']);
+            }
+        }
+
+        return $post;
     }
 
     public function delete($id)
@@ -38,9 +68,27 @@ class PostService
 
     public function create($fields)
     {
-        $fields['person_id'] = Auth::user()->person->id;
+        $keywords = collect(explode(',', $fields['tags']))->map(fn ($k) => ucfirst(trim($k)));
 
-        return Post::create($fields);
+        $tags = [];
+
+        foreach ($keywords as $keyword) {
+            $tags[] = Tag::firstOrCreate(['keyword' => $keyword]);
+        }
+
+        $post = Post::create([
+            'person_id' => Auth::user()->person->id,
+            'header' => $fields['header'],
+            'text' => $fields['text'],
+        ]);
+
+        foreach ($tags as $tag) {
+            if (! $post->tags()->find($tag['id'])) {
+                $post->tags()->attach($tag['id']);
+            }
+        }
+
+        return $post;
     }
 
     public function like($id)

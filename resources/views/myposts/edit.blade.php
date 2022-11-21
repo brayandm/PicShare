@@ -35,7 +35,21 @@
                                 class="mb-5"><br>
 
                             <label for="text" class="text-xl">Text:</label><br>
-                            <textarea id="text" name="text" class="mb-5 p-3" rows="5">{{$post->text}}</textarea><br>
+                            <textarea id="text" name="text" class="mb-5 p-3" rows="5">{{ $post->text }}</textarea><br>
+
+                            @php
+                                $tags = '';
+                                foreach ($post->tags()->get() as $tag) {
+                                    if ($tags != '') {
+                                        $tags .= ', ';
+                                    }
+                                    $tags .= $tag->keyword;
+                                }
+                            @endphp
+
+                            <label for="header" class="text-xl">Tags:</label el><br>
+                            <input type="text" id="tags" name="tags" value="{{ $tags }}"
+                                class="mb-5"><br>
 
                             <button type="submit" class="self-end border p-2 rounded-xl bg-gray-200">Edit</button>
                         </div>

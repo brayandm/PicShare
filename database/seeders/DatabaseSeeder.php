@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
             'person_id' => $exampleUser->person->id,
         ]);
 
+        \App\Models\Tag::factory(20)->create();
+
         foreach ($users as $user) {
             \App\Models\Post::factory()->create([
                 'person_id' => $user->person->id,
@@ -38,6 +40,19 @@ class DatabaseSeeder extends Seeder
         }
 
         $posts = \App\Models\Post::all();
+
+        $tags = \App\Models\Tag::all()->toArray();
+
+        foreach ($posts as $post) {
+            shuffle($tags);
+
+            $amount = rand(0, 3);
+
+            for ($i = 0; $i < $amount; $i++) {
+                $post->tags()->attach($tags[$i]['id']);
+            }
+        }
+
         $people = \App\Models\Person::all();
 
         for ($i = 0; $i < 15; $i++) {

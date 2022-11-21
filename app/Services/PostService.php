@@ -13,12 +13,12 @@ class PostService
 {
     public function getAll($pageSize)
     {
-        return Post::orderByDesc('created_at')->with('person.user')->paginate($pageSize);
+        return Post::orderByDesc('updated_at')->with('person.user')->paginate($pageSize);
     }
 
     public function getForCurrentPerson()
     {
-        return Post::where('person_id', Auth::user()->person->id)->get();
+        return Post::where('person_id', Auth::user()->person->id)->orderByDesc('updated_at')->get();
     }
 
     public function get($id)
@@ -56,9 +56,9 @@ class PostService
         try {
             $post->likedPeople()->attach(Auth::user()->person->id);
 
-            $post->update([
-                'likes' => $post->likes + 1,
-            ]);
+            $post->likes++;
+            $post->timestamps = false;
+            $post->save();
 
             DB::commit();
         } catch (\Exception $e) {
@@ -79,9 +79,9 @@ class PostService
         try {
             $post->likedPeople()->detach(Auth::user()->person->id);
 
-            $post->update([
-                'likes' => $post->likes - 1,
-            ]);
+            $post->likes--;
+            $post->timestamps = false;
+            $post->save();
 
             DB::commit();
         } catch (\Exception $e) {

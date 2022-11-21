@@ -40,9 +40,9 @@ class PostController extends Controller
 
         $post = $this->postService->update($id, $validated);
 
-        // if ($request->picture) {
-        //     $this->postService->savePicture($post->id, $request->file('picture'));
-        // }
+        if ($request->picture) {
+            $this->postService->savePicture($post->id, $request->file('picture'));
+        }
 
         return redirect()->route('myposts.show');
     }

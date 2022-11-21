@@ -24,7 +24,8 @@
 
                     <h1 class="text-2xl mb-10"> {{ $post->person->user->name }}</h1>
 
-                    <form action={{ route('myposts.update', ['id' => $post->id]) }} method="POST">
+                    <form action={{ route('myposts.update', ['id' => $post->id]) }} method="POST"
+                        enctype="multipart/form-data">
 
                         @csrf
                         @method('put')
@@ -33,6 +34,15 @@
                             <label for="header" class="text-xl">Header:</label><br>
                             <input type="text" id="header" name="header" value="{{ $post->header }}"
                                 class="mb-5"><br>
+
+                            @if ($post->picture)
+                                <img class="mb-5 self-center"
+                                    src={{ route('picture.get', ['picture' => $post->picture]) }} alt="picture"
+                                    width="300" height="300">
+                            @endif
+
+                            <label for="text" class="text-xl">Picture:</label><br>
+                            <input type="file" name="picture" class="mb-5" />
 
                             <label for="text" class="text-xl">Text:</label><br>
                             <textarea id="text" name="text" class="mb-5 p-3" rows="5">{{ $post->text }}</textarea><br>

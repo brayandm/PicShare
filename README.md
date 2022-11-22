@@ -11,31 +11,43 @@ Social network to share pictures and make friends
 
 ## Installation instructions
 
-Cloning the repository:
+1 - Cloning the repository:
 
 ```bash
   git clone https://github.com/brayandm/PicShare.git
 ```
 
-Changing the directory:
+2 - Changing the directory:
 
 ```bash
   cd PicShare
 ```
 
-Installing dependencies:
+3 - Installing dependencies:
 
 ```bash
   composer install
 ```
 
-Mounting the server:
+4 - Copying .env.example to .env
+
+```bash
+   cp .env.example .env
+```
+
+5 - Generating key:
+
+```bash
+   php artisan key:generate
+```
+
+6 - Mounting the server:
 
 ```bash
   ./vendor/bin/sail up
 ```
 
-Seeding the database:
+7 - Seeding the database:
 
 ```bash
   ./vendor/bin/sail artisan migrate:fresh --seed 

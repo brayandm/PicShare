@@ -53,4 +53,4 @@ Social network to share pictures and make friends
   ./vendor/bin/sail artisan migrate:fresh --seed 
 ```
 
-8 - Going to the link [http://localhost:81/](http://localhost:81/):
+8 - Going to the website in the browser [http://localhost:81/](http://localhost:81/)

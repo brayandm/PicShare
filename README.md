@@ -8,6 +8,7 @@ Social network to share pictures and make friends
 - [PHP 8.1](https://www.php.net/)
 - [Composer](https://getcomposer.org/)
 - [Docker](https://www.docker.com/)
+- [Npm](https://www.npmjs.com/)
 
 ## Installation instructions
 

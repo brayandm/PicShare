@@ -35,7 +35,7 @@ Social network to share pictures and make friends
    cp .env.example .env
 ```
 
-5 - Generating key:
+5 - Generating App key:
 
 ```bash
    php artisan key:generate
@@ -44,7 +44,7 @@ Social network to share pictures and make friends
 6 - Mounting the server:
 
 ```bash
-  ./vendor/bin/sail up
+  ./vendor/bin/sail up -d
 ```
 
 7 - Seeding the database:

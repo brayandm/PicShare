@@ -52,3 +52,5 @@ Social network to share pictures and make friends
 ```bash
   ./vendor/bin/sail artisan migrate:fresh --seed 
 ```
+
+8 - Going to the link [http://localhost:81/](http://localhost:81/):

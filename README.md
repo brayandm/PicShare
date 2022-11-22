@@ -47,7 +47,19 @@ Social network to share pictures and make friends
    ./vendor/bin/sail artisan key:generate
 ```
 
-7 - Seeding the database:
+7 - Installing npm packages:
+
+```bash
+   npm install
+```
+
+8 - Building npm packages:
+
+```bash
+   npm run build
+```
+
+9 - Seeding the database:
 
 ```bash
   ./vendor/bin/sail artisan migrate:fresh --seed 

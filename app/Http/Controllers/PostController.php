@@ -38,6 +38,10 @@ class PostController extends Controller
             'tags' => 'max:255',
         ]);
 
+        $request->validate([
+            'picture' => 'image|max:1024',
+        ]);
+
         $post = $this->postService->update($id, $validated);
 
         if ($request->picture) {
@@ -65,6 +69,10 @@ class PostController extends Controller
             'header' => 'max:255',
             'text' => 'max:255',
             'tags' => 'max:255',
+        ]);
+
+        $request->validate([
+            'picture' => 'image|max:1024',
         ]);
 
         $post = $this->postService->create($validated);

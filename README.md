@@ -6,9 +6,9 @@ Social network to share pictures and make friends
 
 ## Dependencies
 - [PHP 8.1](https://www.php.net/)
-- [Composer](https://getcomposer.org/)
-- [Docker](https://www.docker.com/)
-- [Npm](https://www.npmjs.com/)
+- [Composer 2.4](https://getcomposer.org/)
+- [Docker 20.10](https://www.docker.com/)
+- [Npm 8.19](https://www.npmjs.com/)
 
 ## Installation instructions
 

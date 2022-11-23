@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', [PostController::class, 'getAll'])->name('dashboard');

@@ -19,6 +19,11 @@ class PersonController extends Controller
         return view('profile.show', ['person' => $this->personService->get()]);
     }
 
+    public function getPerson($id)
+    {
+        return view('profiles.show', ['person' => $this->personService->getPerson($id)]);
+    }
+
     public function edit()
     {
         return view('profile.edit', ['person' => $this->personService->get()]);

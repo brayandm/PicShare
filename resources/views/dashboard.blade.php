@@ -15,7 +15,13 @@
                     <div class="mt-8 w-1/2 mx-auto bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="flex flex-col content-center p-6 bg-white border-b border-gray-200">
                             <p class="mb-5 text-end">{{ (new Datetime($post->created_at))->format('Y-m-d H:i') }}</p>
-                            <p class="mb-5 text-end">{{ $post->person->user->name }}</p>
+                            @if (Auth::user()->person->id != $post->person->id)
+                                <a class="mb-5 text-end"
+                                    href={{ route('profiles.show', ['id' => $post->person->id]) }}>{{ $post->person->user->name }}</a>
+                            @else
+                                <a class="mb-5 text-end"
+                                    href={{ route('profile.show')}}>{{ $post->person->user->name }}</a>
+                            @endif
                             <h1 class="mb-10 text-xl self-center text-justify">{{ $post->header }}</h1>
                             @if ($post->picture)
                                 <img class="mb-5 self-center"

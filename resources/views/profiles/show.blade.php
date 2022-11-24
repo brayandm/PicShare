@@ -15,6 +15,10 @@
                     <h2 class="text-xl mb-2">Birthdate:</h2>
                     <p class="mb-10"> {{ $person->birthdate }}</p>
 
+                    <h2 class="text-xl mb-10">Followers: {{$person->followers()->count() }}</h2>
+
+                    <h2 class="text-xl mb-10">Followings: {{$person->followings()->count() }}</h2>
+
                     @if (! Auth::user()->person->followings()->find($person->id))
                         <form action={{ route('profiles.follow', ['id' => $person->id]) }} method="POST">
 

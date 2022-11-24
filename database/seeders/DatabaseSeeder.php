@@ -100,5 +100,15 @@ class DatabaseSeeder extends Seeder
                 $post->save();
             }
         }
+
+        foreach ($people as $person1) {
+            foreach ($people as $person2) {
+                if ($person1->id != $person2->id) {
+                    if (! rand(0, 2)) {
+                        $person1->followings()->attach($person2->id);
+                    }
+                }
+            }
+        }
     }
 }

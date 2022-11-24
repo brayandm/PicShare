@@ -16,10 +16,10 @@
                         <div class="flex flex-col content-center p-6 bg-white border-b border-gray-200">
                             <p class="mb-5 text-end">{{ (new Datetime($post->created_at))->format('Y-m-d H:i') }}</p>
                             @if (Auth::user()->person->id != $post->person->id)
-                                <a class="mb-5 text-end"
+                                <a class="mb-5 text-end underline"
                                     href={{ route('profiles.show', ['id' => $post->person->id]) }}>{{ $post->person->user->name }}</a>
                             @else
-                                <a class="mb-5 text-end"
+                                <a class="mb-5 text-end underline"
                                     href={{ route('profile.show')}}>{{ $post->person->user->name }}</a>
                             @endif
                             <h1 class="mb-10 text-xl self-center text-justify">{{ $post->header }}</h1>

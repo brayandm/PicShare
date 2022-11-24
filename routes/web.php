@@ -27,7 +27,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard/{type}/{id}/comment', [CommentController::class, 'create'])->name('dashboard.comment.create');
     Route::post('/dashboard/{type}/{id}/comment', [CommentController::class, 'store'])->name('dashboard.comment.store');
     Route::delete('/dashboard/{id}', [PostController::class, 'unlike'])->name('dashboard.unlike');
-    Route::get('/profiles/show/{id}', [PersonController::class, 'getPerson'])->name('profiles.show');
+    Route::get('/profiles/{id}/show', [PersonController::class, 'getPerson'])->name('profiles.show');
+    Route::post('/profiles/{id}/follow', [PersonController::class, 'followPerson'])->name('profiles.follow');
+    Route::post('/profiles/{id}/unfollow', [PersonController::class, 'unfollowPerson'])->name('profiles.unfollow');
     Route::get('/profile/show', [PersonController::class, 'get'])->name('profile.show');
     Route::get('/profile/edit', [PersonController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/edit', [PersonController::class, 'update'])->name('profile.update');

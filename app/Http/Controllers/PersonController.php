@@ -29,6 +29,20 @@ class PersonController extends Controller
         return view('profile.edit', ['person' => $this->personService->get()]);
     }
 
+    public function followPerson($id)
+    {
+        $this->personService->followPerson($id);
+
+        return redirect()->back();
+    }
+
+    public function unfollowPerson($id)
+    {
+        $this->personService->unfollowPerson($id);
+
+        return redirect()->back();
+    }
+
     public function update(Request $request)
     {
         $validated = $request->validate([

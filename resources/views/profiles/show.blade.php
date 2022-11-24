@@ -14,6 +14,33 @@
                     <p class="mb-5"> {{ $person->description }}</p>
                     <h2 class="text-xl mb-2">Birthdate:</h2>
                     <p class="mb-10"> {{ $person->birthdate }}</p>
+
+                    @if (! Auth::user()->person->followings()->find($person->id))
+                        <form action={{ route('profiles.follow', ['id' => $person->id]) }} method="POST">
+
+                            @csrf
+                            @method('post')
+
+                            <div class="flex flex-col">
+                                <button type="submit"
+                                    class="self-end border p-2 rounded-xl bg-gray-200">Follow</button>
+                            </div>
+
+                        </form>
+                    @else
+                        <form action={{ route('profiles.unfollow', ['id' => $person->id]) }} method="POST">
+
+                            @csrf
+                            @method('post')
+
+                            <div class="flex flex-col">
+                                <button type="submit"
+                                    class="self-end border p-2 rounded-xl bg-gray-200">Unfollow</button>
+                            </div>
+
+                        </form>
+                    @endif
+
                 </div>
             </div>
         </div>

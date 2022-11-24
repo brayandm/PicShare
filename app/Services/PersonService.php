@@ -17,6 +17,24 @@ class PersonService
         return Person::find($id);
     }
 
+    public function followPerson($id)
+    {
+        if (Auth::user()->person->followings()->find($id)) {
+            return;
+        }
+
+        Auth::user()->person->followings()->attach($id);
+    }
+
+    public function unfollowPerson($id)
+    {
+        if (! Auth::user()->person->followings()->find($id)) {
+            return;
+        }
+
+        Auth::user()->person->followings()->detach($id);
+    }
+
     public function update($fields)
     {
         Auth::user()->person->update($fields);

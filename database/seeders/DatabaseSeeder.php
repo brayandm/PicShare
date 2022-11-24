@@ -27,6 +27,16 @@ class DatabaseSeeder extends Seeder
 
         $users = \App\Models\User::factory(5)->create();
 
+        foreach (\App\Models\User::all() as $user) {
+            $user->person()->delete();
+        }
+
+        foreach (\App\Models\User::all() as $user) {
+            \App\Models\Person::factory()->create([
+                'user_id' => $user,
+            ]);
+        }
+
         \App\Models\Post::factory(3)->create([
             'person_id' => $exampleUser->person->id,
         ]);

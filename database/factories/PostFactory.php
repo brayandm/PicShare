@@ -19,8 +19,8 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'header' => fake()->text(50),
-            'text' => fake()->text(200),
+            'header' => fake()->realText(50),
+            'text' => fake()->realText(200),
             'picture' => $this->fakePicture(),
             'likes' => 0,
         ];

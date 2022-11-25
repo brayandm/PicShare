@@ -15,7 +15,12 @@
                     <h2 class="text-xl mb-2">Birthdate:</h2>
                     <p class="mb-10"> {{ $person->birthdate }}</p>
 
-                    <a href={{route('profile.edit')}} class="self-end border p-2 rounded-xl bg-gray-200">Edit Profile</a>
+                    <h2 class="text-xl mb-10">Followers: {{ $person->followers()->count() }}</h2>
+
+                    <h2 class="text-xl mb-10">Followings: {{ $person->followings()->count() }}</h2>
+
+                    <a href={{ route('profile.edit') }} class="self-end border p-2 rounded-xl bg-gray-200">Edit
+                        Profile</a>
                 </div>
             </div>
         </div>

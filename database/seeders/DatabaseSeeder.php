@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             'person_id' => $exampleUser->person->id,
         ]);
 
-        \App\Models\Tag::factory(20)->create();
+        \App\Models\Tag::factory(10)->create();
 
         foreach ($users as $user) {
             \App\Models\Post::factory()->create([

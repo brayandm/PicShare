@@ -17,6 +17,11 @@ class PostService
         return Post::orderByDesc('updated_at')->with('person.user')->paginate($pageSize);
     }
 
+    public function getAllByTag($pageSize, $id)
+    {
+        return Tag::find($id)->posts()->orderByDesc('updated_at')->with('person.user')->paginate($pageSize);
+    }
+
     public function getForCurrentPerson()
     {
         return Post::where('person_id', Auth::user()->person->id)->orderByDesc('updated_at')->get();

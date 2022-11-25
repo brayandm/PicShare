@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', [PostController::class, 'getAll'])->name('dashboard');
+    Route::get('/dashboard/tag/{id}', [PostController::class, 'getAllByTag'])->name('dashboard.tag');
     Route::post('/dashboard/{id}', [PostController::class, 'like'])->name('dashboard.like');
     Route::get('/dashboard/{type}/{id}/comment', [CommentController::class, 'create'])->name('dashboard.comment.create');
     Route::post('/dashboard/{type}/{id}/comment', [CommentController::class, 'store'])->name('dashboard.comment.store');

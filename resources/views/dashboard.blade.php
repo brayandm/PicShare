@@ -56,7 +56,10 @@
                             <div class="flex flex-row mb-8">
                                 <p class="pr-3 self-center">Tags:</p>
                                 @foreach ($post->tags()->get() as $tag)
-                                    <div class="border p-2 rounded-xl bg-gray-200 mr-3">{{ $tag->keyword }}</div>
+                                    <div class="border p-2 rounded-xl bg-gray-200 mr-3">
+                                        <a href={{ route('dashboard.tag', ['id' => $tag->id]) }}
+                                            class="self-end border p-2 rounded-xl bg-gray-200">{{ $tag->keyword }}</a>
+                                    </div>
                                 @endforeach
                             </div>
 

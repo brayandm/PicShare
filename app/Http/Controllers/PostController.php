@@ -20,6 +20,11 @@ class PostController extends Controller
         return view('dashboard', ['posts' => $this->postService->getAll(5)]);
     }
 
+    public function getAllByTag($id)
+    {
+        return view('dashboard', ['posts' => $this->postService->getAllByTag(5, $id)]);
+    }
+
     public function getForCurrentPerson()
     {
         return view('myposts.show', ['posts' => $this->postService->getForCurrentPerson()]);

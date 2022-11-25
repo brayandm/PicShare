@@ -29,6 +29,12 @@
                             {{ __('My Posts') }}
                         </x-nav-link>
                     </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('following.show')" :active="request()->routeIs('following.show')">
+                            {{ __('Following') }}
+                        </x-nav-link>
+                    </div>
                 @else
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('users.show')" :active="request()->routeIs('users.show')">
@@ -79,6 +85,16 @@
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                     {{ __('My Posts') }}
+                                </x-dropdown-link>
+                            </form>
+
+                            <form method="GET" action="{{ route('following.show') }}">
+                                @csrf
+
+                                <x-dropdown-link :href="route('following.show')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('Following') }}
                                 </x-dropdown-link>
                             </form>
                         @else
@@ -159,16 +175,26 @@
                             {{ __('My Posts') }}
                         </x-responsive-nav-link>
                     </form>
-                @else
-                <form method="GET" action="{{ route('users.show') }}">
-                    @csrf
 
-                    <x-responsive-nav-link :href="route('users.show')"
-                        onclick="event.preventDefault();
+                    <form method="GET" action="{{ route('following.show') }}">
+                        @csrf
+
+                        <x-responsive-nav-link :href="route('following.show')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                            {{ __('Following') }}
+                        </x-responsive-nav-link>
+                    </form>
+                @else
+                    <form method="GET" action="{{ route('users.show') }}">
+                        @csrf
+
+                        <x-responsive-nav-link :href="route('users.show')"
+                            onclick="event.preventDefault();
                                     this.closest('form').submit();">
-                        {{ __('Users') }}
-                    </x-responsive-nav-link>
-                </form>
+                            {{ __('Users') }}
+                        </x-responsive-nav-link>
+                    </form>
                 @endif
 
                 <!-- Authentication -->

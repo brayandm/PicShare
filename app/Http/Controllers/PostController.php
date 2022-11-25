@@ -30,6 +30,11 @@ class PostController extends Controller
         return view('myposts.show', ['posts' => $this->postService->getForCurrentPerson()]);
     }
 
+    public function getForCurrentPersonFollowings()
+    {
+        return view('following.show', ['posts' => $this->postService->getForCurrentPersonFollowings(5)]);
+    }
+
     public function edit($id)
     {
         return view('myposts.edit', ['post' => $this->postService->get($id)]);

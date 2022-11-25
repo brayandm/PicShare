@@ -27,6 +27,12 @@ class PostService
         return Post::where('person_id', Auth::user()->person->id)->orderByDesc('updated_at')->get();
     }
 
+    public function getForCurrentPersonFollowings($pageSize)
+    {
+        $followings = Auth::user()->person->followings->pluck('id');
+        return Post::whereIn('person_id', $followings)->orderByDesc('updated_at')->with('person.user')->paginate($pageSize);
+    }
+
     public function get($id)
     {
         return Post::where('id', $id)->first();

@@ -20,7 +20,7 @@
                                     href={{ route('profiles.show', ['id' => $post->person->id]) }}>{{ $post->person->user->name }}</a>
                             @else
                                 <a class="mb-5 text-end underline"
-                                    href={{ route('profile.show')}}>{{ $post->person->user->name }}</a>
+                                    href={{ route('profile.show') }}>{{ $post->person->user->name }}</a>
                             @endif
                             <h1 class="mb-10 text-xl self-center text-justify">{{ $post->header }}</h1>
                             @if ($post->picture)
@@ -52,15 +52,17 @@
                                 @endif
                             </div>
                             <br>
-                            <div class="flex flex-col">
-                                <a href={{ route('dashboard.comment.create', ['id' => $post->id, 'type' => 'post']) }}
-                                    class="self-end border p-2 rounded-xl bg-gray-200">Comment</a>
-                            </div>
 
-                            <div class="flex flex-row">
+                            <div class="flex flex-row mb-8">
+                                <p class="pr-3 self-center">Tags:</p>
                                 @foreach ($post->tags()->get() as $tag)
                                     <div class="border p-2 rounded-xl bg-gray-200 mr-3">{{ $tag->keyword }}</div>
                                 @endforeach
+                            </div>
+
+                            <div class="flex flex-col">
+                                <a href={{ route('dashboard.comment.create', ['id' => $post->id, 'type' => 'post']) }}
+                                    class="self-end border p-2 rounded-xl bg-gray-200">Comment</a>
                             </div>
                         </div>
                     </div>

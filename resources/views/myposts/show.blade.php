@@ -30,6 +30,13 @@
                         <p class="mb-5 self-center text-justify">{{ $post->text }}</p>
                         <p class="mb-10">Likes: {{ $post->likes }}</p>
 
+                        <div class="flex flex-row mb-8">
+                            <p class="pr-3 self-center">Tags:</p>
+                            @foreach ($post->tags()->get() as $tag)
+                                <div class="border p-2 rounded-xl bg-gray-200 mr-3">{{ $tag->keyword }}</div>
+                            @endforeach
+                        </div>
+
                         <div class="self-end flex flex-row">
                             <a href={{ route('myposts.edit', [$post->id]) }}
                                 class="border p-2 rounded-xl bg-gray-200 mr-3">Edit</a>
@@ -40,12 +47,6 @@
                                 @method('delete')
                                 <button type="submit" class="border p-2 rounded-xl bg-gray-200">Delete</button>
                             </form>
-                        </div>
-
-                        <div class="flex flex-row">
-                            @foreach ($post->tags()->get() as $tag)
-                                <div class="border p-2 rounded-xl bg-gray-200 mr-3">{{ $tag->keyword }}</div>
-                            @endforeach
                         </div>
 
                     </div>

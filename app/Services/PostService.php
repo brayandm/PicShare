@@ -51,7 +51,10 @@ class PostService
         $tags = [];
 
         foreach ($keywords as $keyword) {
-            $tags[] = Tag::firstOrCreate(['keyword' => $keyword]);
+            if($keyword != '')
+            {
+                $tags[] = Tag::firstOrCreate(['keyword' => $keyword]);
+            }
         }
 
         $post->update([
@@ -84,7 +87,10 @@ class PostService
         $tags = [];
 
         foreach ($keywords as $keyword) {
-            $tags[] = Tag::firstOrCreate(['keyword' => $keyword]);
+            if($keyword != '')
+            {
+                $tags[] = Tag::firstOrCreate(['keyword' => $keyword]);
+            }
         }
 
         $post = Post::create([

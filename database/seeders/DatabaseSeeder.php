@@ -25,29 +25,41 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        $users = \App\Models\User::factory(5)->create();
+        \App\Models\User::factory(10)->create();
 
         foreach (\App\Models\User::all() as $user) {
-            $user->person()->delete();
+            if(!$user->is_admin)
+            {
+                $user->person()->delete();
+            }
         }
 
         foreach (\App\Models\User::all() as $user) {
-            \App\Models\Person::factory()->create([
-                'user_id' => $user,
-            ]);
+            if(!$user->is_admin)
+            {
+                \App\Models\Person::factory()->create([
+                    'user_id' => $user,
+                ]);
+            }
         }
+
+        $people = \App\Models\Person::all();
 
         \App\Models\Post::factory(3)->create([
             'person_id' => $exampleUser->person->id,
         ]);
 
-        \App\Models\Tag::factory(10)->create();
+        foreach ($people as $person) {
+            $amount = rand(0, 3);
 
-        foreach ($users as $user) {
-            \App\Models\Post::factory()->create([
-                'person_id' => $user->person->id,
-            ]);
+            for ($i = 0; $i < $amount; $i++) {
+                \App\Models\Post::factory()->create([
+                    'person_id' => $person->id,
+                ]);
+            }
         }
+
+        \App\Models\Tag::factory(10)->create();
 
         $posts = \App\Models\Post::all();
 
@@ -65,7 +77,7 @@ class DatabaseSeeder extends Seeder
 
         $people = \App\Models\Person::all();
 
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $person = $people[rand(0, count($people) - 1)];
 
             $post = $posts[rand(0, count($posts) - 1)];
@@ -76,7 +88,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 40; $i++) {
             $person = $people[rand(0, count($people) - 1)];
 
             $comments = \App\Models\Comment::all();
@@ -89,7 +101,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $person = $people[rand(0, count($people) - 1)];
 
             $post = $posts[rand(0, count($posts) - 1)];

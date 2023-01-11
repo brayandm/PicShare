@@ -18,6 +18,8 @@ jobs:
     - uses: actions/checkout@v3
       with:
         path: Testing/
+    - name: Changing the directory
+      run: cd Testing/
     - name: Installing dependencies
       run: composer install --ignore-platform-reqs
     - name: Directory Permissions
@@ -56,6 +58,8 @@ jobs:
       with:
         clean: false
         path: Production/
+    - name: Changing the directory
+      run: cd Production/
     - name: Installing dependencies
       run: composer install --ignore-platform-reqs
     - name: Directory Permissions

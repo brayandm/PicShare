@@ -16,16 +16,16 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Stopping apache server
-      run: sudo service apache2 stop
+      run: sudo service apache2 stop & ls storage/app/private/pictures
     - name: Installing dependencies
-      run: composer install --ignore-platform-reqs
+      run: composer install --ignore-platform-reqs & ls storage/app/private/pictures
     - name: Copying .env.prod to .env
-      run: cp .env.prod .env
+      run: cp .env.prod .env & ls storage/app/private/pictures
     - name: Directory Permissions
-      run: chmod -R 777 ../PicShare/
+      run: chmod -R 777 ../PicShare/ & ls storage/app/private/pictures
     - name: Mounting the server
-      run: ./vendor/bin/sail up -d
+      run: ./vendor/bin/sail up -d & ls storage/app/private/pictures
     - name: Generate key
-      run: ./vendor/bin/sail artisan key:generate
+      run: ./vendor/bin/sail artisan key:generate & ls storage/app/private/pictures
     - name: Migrating the database
-      run: ./vendor/bin/sail artisan migrate --force
+      run: ./vendor/bin/sail artisan migrate --force & ls storage/app/private/pictures

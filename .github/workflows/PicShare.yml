@@ -13,7 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Pulling the Repository
+    - name: Changing directory
+      run: cd PicShare/
+    - name: Pulling the repository
       run: git pull
     - name: Installing dependencies
       run: composer install

@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Changing directory
-      run: cd PicShare/
+      run: cd ../PicShare/
     - name: Pulling the repository
       run: git pull
     - name: Installing dependencies

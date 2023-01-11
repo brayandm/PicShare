@@ -36,7 +36,7 @@ jobs:
 
     steps:
     - name: Testing
-      run: ./vendor/bin/sail artisan test
+      run: php artisan test
 
   deploy:
 

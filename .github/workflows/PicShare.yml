@@ -10,7 +10,8 @@ on:
 jobs:
   deploy:
 
-    runs-on: ubuntu-latest
+    runs-on:
+    - picshare-runner
 
     steps:
     - uses: actions/checkout@v3

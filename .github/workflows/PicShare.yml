@@ -13,14 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Changing directory
-      run: ls
-    - name: Changing directory
-      run: cd ../PicShare/
-    - name: Changing directory
-      run: ls
-    - name: Pulling the repository
-      run: git pull
+    - uses: actions/checkout@v3
     - name: Installing dependencies
       run: composer install
     - name: Copying .env.example to .env

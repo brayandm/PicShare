@@ -1,0 +1,27 @@
+
+name: PicShare
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Pulling the Repository
+      run: git pull
+    - name: Installing dependencies
+      run: composer install
+    - name: Copying .env.example to .env
+      run: cp .env.example .env
+    - name: Mounting the server
+      run: ./vendor/bin/sail up -d
+    - name: Generate key
+      run: ./vendor/bin/sail artisan key:generate
+    - name: Refreshing the database
+      run: ./vendor/bin/sail artisan migrate:fresh --seed

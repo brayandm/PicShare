@@ -26,4 +26,4 @@ jobs:
     - name: Generate key
       run: ./vendor/bin/sail artisan key:generate
     - name: Migrating the database
-      run: ./vendor/bin/sail artisan migrate
+      run: ./vendor/bin/sail artisan migrate --force

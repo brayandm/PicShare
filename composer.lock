@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d318e4092a5234ba7fb1cd62e5d615f",
+    "content-hash": "15ed617f73a63e606d902f91192b93de",
     "packages": [
         {
             "name": "brick/math",
@@ -8705,16 +8705,16 @@
         },
         {
             "name": "spatie/laravel-ignition",
-            "version": "1.6.1",
+            "version": "1.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "2b79cf6ed40946b64ac6713d7d2da8a9d87f612b"
+                "reference": "1a2b4bd3d48c72526c0ba417687e5c56b5cf49bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/2b79cf6ed40946b64ac6713d7d2da8a9d87f612b",
-                "reference": "2b79cf6ed40946b64ac6713d7d2da8a9d87f612b",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/1a2b4bd3d48c72526c0ba417687e5c56b5cf49bc",
+                "reference": "1a2b4bd3d48c72526c0ba417687e5c56b5cf49bc",
                 "shasum": ""
             },
             "require": {
@@ -8791,7 +8791,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-10-26T17:39:54+00:00"
+            "time": "2023-01-03T19:28:04+00:00"
         },
         {
             "name": "spatie/laravel-ray",

@@ -23,7 +23,7 @@
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10",
         "roave/security-advisories": "dev-latest",
-        "spatie/laravel-ignition": "^1.0",
+        "spatie/laravel-ignition": "^1.6",
         "spatie/laravel-ray": "^1.31"
     },
     "autoload": {

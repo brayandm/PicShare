@@ -9,7 +9,19 @@ on:
 
 jobs:
 
+  prebuild:
+
+    runs-on:
+    - picshare-runner
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        path: ../
+
   build:
+
+    needs: prebuild
 
     runs-on:
     - picshare-runner

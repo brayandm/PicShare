@@ -15,12 +15,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Directory Permissions
-      run: chmod -R 777 ../PicShare/
     - name: Installing dependencies
       run: composer install --ignore-platform-reqs
     - name: Copying .env.example to .env
       run: cp .env.example .env
+    - name: Directory Permissions
+      run: chmod -R 777 ../PicShare/
     - name: Mounting the server
       run: ./vendor/bin/sail up -d
     - name: Generate key

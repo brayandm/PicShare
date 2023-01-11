@@ -8,6 +8,7 @@ on:
     branches: [ "main" ]
 
 jobs:
+
   build:
 
     runs-on:
@@ -26,9 +27,20 @@ jobs:
     - name: Generate key
       run: ./vendor/bin/sail artisan key:generate
 
-  deploy:
+  test:
 
     needs: build
+
+    runs-on:
+    - picshare-runner
+
+    steps:
+    - name: Testing
+      run: ./vendor/bin/sail artisan test
+
+  deploy:
+
+    needs: test
 
     runs-on:
     - picshare-runner

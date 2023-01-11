@@ -28,7 +28,7 @@ jobs:
 
   deploy:
 
-    if: ${{jobs.build.result == 'success'}}
+    if: ${{ jobs.build.result == 'success' }}
     runs-on:
     - picshare-runner
 

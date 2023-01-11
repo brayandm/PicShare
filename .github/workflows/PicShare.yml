@@ -14,10 +14,7 @@ jobs:
     - picshare-runner
 
     steps:
-    - name: Pulling code
-      run: git pull
-    - name: Printing
-      run:  ls storage/app/private/pictures/
+    - uses: actions/checkout@v3
     - name: Stopping apache server
       run: sudo service apache2 stop
     - name: Installing dependencies

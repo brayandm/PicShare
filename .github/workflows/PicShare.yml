@@ -25,7 +25,7 @@ jobs:
     - name: Copying .env.prod to .env
       run: cp .env.prod .env
     - name: Generate key
-      run: ./vendor/bin/sail artisan key:generate
+      run: php artisan key:generate
 
   test:
 

@@ -23,7 +23,7 @@ jobs:
     - name: Directory Permissions
       run: chmod -R 777 ../PicShare/
     - name: Copying .env.prod to .env
-      run: cp .env.prodxxx .env
+      run: cp .env.prod .env
     - name: Generate key
       run: ./vendor/bin/sail artisan key:generate
 

@@ -72,6 +72,5 @@ class User extends Authenticatable
     public function person()
     {
         return $this->hasOne(Person::class);
-
     }
 }

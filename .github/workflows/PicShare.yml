@@ -25,5 +25,5 @@ jobs:
       run: ./vendor/bin/sail up -d
     - name: Generate key
       run: ./vendor/bin/sail artisan key:generate
-    - name: Refreshing the database
-      run: ./vendor/bin/sail artisan migrate:fresh --seed
+    - name: Migrating the database
+      run: ./vendor/bin/sail artisan migrate

@@ -29,8 +29,8 @@ jobs:
   deploy:
 
     if: ${{job.status == 'success'}}
-      runs-on:
-      - picshare-runner
+    runs-on:
+    - picshare-runner
 
     steps:
     - name: Stopping apache server

@@ -24,8 +24,10 @@ jobs:
       run: chmod -R 777 ../PicShare/
     - name: Copying .env.prod to .env
       run: cp .env.prod .env
+    - name: Mounting the server
+      run: ./vendor/bin/sail up -d
     - name: Generate key
-      run: php artisan key:generate
+      run: ./vendor/bin/sail artisan key:generate
 
   test:
 
@@ -36,7 +38,7 @@ jobs:
 
     steps:
     - name: Testing
-      run: php artisan test
+      run: ./vendor/bin/sail artisan test
 
   deploy:
 
@@ -48,7 +50,5 @@ jobs:
     steps:
     - name: Stopping apache server
       run: sudo service apache2 stop
-    - name: Mounting the server
-      run: ./vendor/bin/sail up -d
     - name: Migrating the database
       run: ./vendor/bin/sail artisan migrate --force

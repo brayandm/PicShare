@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        path: ../
+        path: Testing/
 
   build:
 
@@ -30,6 +30,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         clean: false
+        path: Production/
     - name: Installing dependencies
       run: composer install --ignore-platform-reqs
     - name: Directory Permissions

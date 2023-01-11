@@ -19,7 +19,7 @@ jobs:
       with:
         path: Testing/
     - name: Changing the directory
-      run: ls
+      run: cd Testing/
     - name: Installing dependencies
       run: COMPOSER_ALLOW_SUPERUSER=1 composer install
     - name: Directory Permissions
@@ -61,7 +61,7 @@ jobs:
     - name: Changing the directory
       run: cd Production/
     - name: Installing dependencies
-      run: composer install --ignore-platform-reqs
+      run: COMPOSER_ALLOW_SUPERUSER=1 composer install
     - name: Directory Permissions
       run: chmod -R 777 ../Production/
     - name: Setting up production environment

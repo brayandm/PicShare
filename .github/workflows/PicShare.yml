@@ -14,8 +14,7 @@ jobs:
     - picshare-runner
 
     steps:
-    - name: Pulling code
-      run: git pull
+    - uses: actions/checkout@v3
     - name: Installing dependencies
       run: composer install --ignore-platform-reqs
     - name: Copying .env.prod to .env

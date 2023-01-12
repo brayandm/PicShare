@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('./vendor/bin/sail artisan backup:run')->everyFiveMinutes();
+        $schedule->command('./vendor/bin/sail artisan backup:run')->everyMinute();
     }
 
     /**

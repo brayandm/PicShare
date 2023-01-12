@@ -58,6 +58,8 @@ jobs:
         path: Production/
     - name: Installing dependencies
       run: cd Production && COMPOSER_ALLOW_SUPERUSER=1 composer install
+    - name: Setting up docker compose
+      run: cd Production && cp -f docker-compose.prod.yml docker-compose.yml
     - name: Setting up production environment
       run: echo "${{ secrets.WEBSITE_ENV_PRODUCTION }}" > .env
     - name: Directory Permissions

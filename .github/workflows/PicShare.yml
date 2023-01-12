@@ -42,7 +42,7 @@ jobs:
 
     steps:
     - name: Testing
-      run: ./vendor/bin/sail artisan test
+      run: cd Testing && ./vendor/bin/sail artisan test
 
   deploy:
 
@@ -56,17 +56,17 @@ jobs:
       with:
         clean: false
         path: Production/
-    - name: Changing the directory
-      run: cd Production/
     - name: Installing dependencies
-      run: COMPOSER_ALLOW_SUPERUSER=1 composer install
-    - name: Directory Permissions
-      run: chmod -R 777 ../Production/
+      run: cd Production && COMPOSER_ALLOW_SUPERUSER=1 composer install
     - name: Setting up production environment
       run: echo "${{ secrets.WEBSITE_ENV_PRODUCTION }}" > .env
+    - name: Stopping apache server
+      run: sudo service apache2 stop
+    - name: Directory Permissions
+      run: chmod -R 777 Production
     - name: Mounting the server
-      run: ./vendor/bin/sail up -d
+      run: cd Production && ./vendor/bin/sail up -d
     - name: Generate key
-      run: ./vendor/bin/sail artisan key:generate
+      run: cd Production && ./vendor/bin/sail artisan key:generate
     - name: Migrating the database
-      run: ./vendor/bin/sail artisan migrate --force
+      run: cd Production && ./vendor/bin/sail artisan migrate --force

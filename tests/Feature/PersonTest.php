@@ -6,6 +6,7 @@ use App\Models\Person;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class PersonTest extends TestCase
@@ -27,5 +28,10 @@ class PersonTest extends TestCase
         $this->post('/profiles/' . $user2->person->id . '/follow');
 
         $this->assertDatabaseHas('person_person', ['follower_id' => $user1->person->id, 'following_id' => $user2->person->id]);
+    }
+
+    public function testDisk()
+    {
+        dd(Storage::disk('s3')->files());
     }
 }

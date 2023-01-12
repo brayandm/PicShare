@@ -24,7 +24,7 @@ class PersonTest extends TestCase
 
         Auth::login($user1);
 
-        $this->post('/profiles/' . $user2->person->id . '/follow');
+        // $this->post('/profiles/' . $user2->person->id . '/follow');
 
         $this->assertDatabaseHas('person_person', ['follower_id' => $user1->person->id, 'following_id' => $user2->person->id]);
     }

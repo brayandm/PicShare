@@ -29,9 +29,4 @@ class PersonTest extends TestCase
 
         $this->assertDatabaseHas('person_person', ['follower_id' => $user1->person->id, 'following_id' => $user2->person->id]);
     }
-
-    public function testDisk()
-    {
-        dd(Storage::disk('s3')->files());
-    }
 }

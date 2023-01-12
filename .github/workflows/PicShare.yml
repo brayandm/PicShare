@@ -18,6 +18,8 @@ jobs:
     - uses: actions/checkout@v3
       with:
         path: Testing/
+    - name: Stopping all containers
+      run : docker stop $(docker ps -a -q)
     - name: Installing dependencies
       run: cd Testing && COMPOSER_ALLOW_SUPERUSER=1 composer install
     - name: Copying .env.example to .env

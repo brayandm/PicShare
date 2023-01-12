@@ -27,7 +27,7 @@ jobs:
     - name: Stopping apache server
       run: sudo service apache2 stop
     - name: Directory Permissions
-      run: chmod -R 777 Testing
+      run: chmod -R 777 Testing/
     - name: Mounting the server
       run: cd Testing && ./vendor/bin/sail up -d
     - name: Generate key
@@ -65,7 +65,7 @@ jobs:
     - name: Setting up production environment
       run: echo "${{ secrets.WEBSITE_ENV_PRODUCTION }}" > .env
     - name: Directory Permissions
-      run: chmod -R 777 Production
+      run: chmod -R 777 Production/
     - name: Mounting the server
       run: cd Production && ./vendor/bin/sail up -d
     - name: Generate key

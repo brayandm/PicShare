@@ -43,9 +43,6 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
-            'verify_peer' => env('MAIL_VALIDATE_CERT',  false),
-            'verify_peer_name' => env('MAIL_VALIDATE_CERT',  false),
-            'allow_self_signed' => true,
         ],
 
         'ses' => [
@@ -63,13 +60,6 @@ return [
         'sendmail' => [
             'transport' => 'sendmail',
             'path' => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -bs -i'),
-            'stream' => [
-                'ssl' => [
-                    'allow_self_signed' => true,
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                ],
-            ],
         ],
 
         'log' => [
@@ -124,4 +114,5 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
+
 ];

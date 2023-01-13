@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\AdminNewUserNotification;
+use App\Notifications\WelcomeUserNotification;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -48,6 +50,12 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        $user->notify(new WelcomeUserNotification());
+        $admins = User::where('is_admin', '=', 1)->get();
+        foreach ($admins as $admin) {
+            $admin->notify(new AdminNewUserNotification($user));
+        }
 
         return redirect(RouteServiceProvider::HOME);
     }

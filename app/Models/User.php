@@ -60,12 +60,6 @@ class User extends Authenticatable
                     'user_id' => $user->id,
                 ]);
             }
-
-            $user->notify(new WelcomeUserNotification());
-            $admins = User::where('is_admin', '=', 1)->get();
-            foreach ($admins as $admin) {
-                $admin->notify(new AdminNewUserNotification($user));
-            }
         });
     }
 

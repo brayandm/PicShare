@@ -50,7 +50,7 @@ jobs:
 
     needs: test
 
-    if: [[${{ github.event.head_commit.message =~ --deploy$}}]]
+    if: [[${{ github.event.head_commit.message}} =~ --deploy$]]
     runs-on:
     - picshare-runner
 

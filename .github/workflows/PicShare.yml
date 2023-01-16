@@ -11,8 +11,6 @@ jobs:
 
   build:
 
-    if: endsWith(github.event.head_commit.message, ' --deploy')
-
     runs-on:
     - picshare-runner
 
@@ -49,6 +47,8 @@ jobs:
       run: cd Testing && ./vendor/bin/sail artisan test
 
   deploy:
+
+    if: endsWith(github.event.head_commit.message, ' --deploy')
 
     needs: test
 

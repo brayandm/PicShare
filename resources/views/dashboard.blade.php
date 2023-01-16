@@ -30,26 +30,7 @@
                             @endif
                             <p class="mb-5 self-center text-justify">{{ $post->text }}</p>
                             <div class="flex flex-row items-center">
-                                <p class="pr-3">Likes: {{ $post->likes }}</p>
-                                @if ($post->likedPeople()->find(Auth::user()->person->id))
-                                    <form action={{ route('dashboard.unlike', ['id' => $post->id]) }} method="POST">
-
-                                        @csrf
-                                        @method('delete')
-
-                                        <button type="submit" class="border p-2 rounded-xl bg-gray-200">Unlike</button>
-
-                                    </form>
-                                @else
-                                    <form action={{ route('dashboard.like', ['id' => $post->id]) }} method="POST">
-
-                                        @csrf
-                                        @method('post')
-
-                                        <button type="submit" class="border p-2 rounded-xl bg-gray-200">Like</button>
-
-                                    </form>
-                                @endif
+                                <livewire:liker :post="$post" />
                             </div>
                             <br>
 

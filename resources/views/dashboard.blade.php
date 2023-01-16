@@ -101,7 +101,15 @@
                             <div class="mt-1 w-full bg-white overflow-hidden shadow-sm sm:rounded-lg"
                                 style="margin-left:{{ ($comment[1] - 1) * 50 }}px">
                                 <div class="p-6 bg-gray-300 border-b border-gray-200">
-                                    <p> <b><u>{{ App\Models\Person::find($comment[0]->person_id)->user->name }}:</u></b>
+                                    <p> <b><u>
+                                                @if (Auth::user()->person->id != $comment[0]->person_id)
+                                                    <a class="mb-5 text-end underline"
+                                                        href={{ route('profiles.show', ['id' => $comment[0]->person_id]) }}>{{ App\Models\Person::find($comment[0]->person_id)->user->name }}</a>
+                                                @else
+                                                    <a class="mb-5 text-end underline"
+                                                        href={{ route('profile.show') }}>{{ App\Models\Person::find($comment[0]->person_id)->user->name }}</a>
+                                                @endif
+                                            </u></b>
                                     </p>
                                     <br>
                                     <p> {{ $comment[0]->text }}</p>

@@ -48,9 +48,10 @@ jobs:
 
   deploy:
 
+    if: endsWith(${{ github.event.head_commit.message}}, ' --deploy')
+
     needs: test
 
-    if: endsWith(${{ github.event.head_commit.message}}, ' --deploy')
     runs-on:
     - picshare-runner
 

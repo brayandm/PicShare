@@ -54,8 +54,6 @@ jobs:
     runs-on:
     - picshare-runner
 
-    if: endwit
-
     steps:
     - name: Dismounting the server
       run: cd Production && ./vendor/bin/sail down

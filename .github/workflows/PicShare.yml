@@ -7,12 +7,12 @@ on:
   pull_request:
     branches: [ "main" ]
 
+runs-on:
+  - picshare-runner
+
 jobs:
 
   build:
-
-    runs-on:
-    - picshare-runner
 
     steps:
     - name: Dismounting the server
@@ -39,9 +39,6 @@ jobs:
 
     needs: build
 
-    runs-on:
-    - picshare-runner
-
     steps:
     - name: Testing
       run: cd Testing && ./vendor/bin/sail artisan test
@@ -51,9 +48,6 @@ jobs:
     if: endsWith(github.event.head_commit.message, ' --deploy')
 
     needs: test
-
-    runs-on:
-    - picshare-runner
 
     steps:
     - name: Dismounting the server

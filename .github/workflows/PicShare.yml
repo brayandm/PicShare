@@ -11,7 +11,7 @@ jobs:
 
   build:
 
-    if: endsWith(${{ github.event.head_commit.message }}, ' --deploy')
+    if: endsWith(github.event.head_commit.message, ' --deploy')
 
     runs-on:
     - picshare-runner

@@ -48,7 +48,7 @@ jobs:
 
   deploy:
 
-    if: endsWith(github.event.head_commit.message, ' --deploy')
+    if: endsWith(github.event.head_commit.message, '--deploy')
 
     needs: test
 

@@ -15,8 +15,8 @@ jobs:
     - picshare-runner
 
     steps:
-    - name: Dismounting the server
-      run: cd Testing && ./vendor/bin/sail down
+    # - name: Dismounting the server
+    #   run: cd Testing && ./vendor/bin/sail down
     - uses: actions/checkout@v3
       with:
         path: Testing/
@@ -56,8 +56,8 @@ jobs:
     - picshare-runner
 
     steps:
-    - name: Dismounting the server
-      run: cd Production && ./vendor/bin/sail down
+    # - name: Dismounting the server
+    #   run: cd Production && ./vendor/bin/sail down
     - uses: actions/checkout@v3
       with:
         clean: false

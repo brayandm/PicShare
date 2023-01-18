@@ -30,8 +30,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'weather@example.com',
         ]);
 
-        \App\Models\Person::factory()->create([
-            'user_id' => $weatherUser,
+        \App\Models\Person::where('user_id', $weatherUser->id)->first()->update([
+            'description' => 'This is a weather service',
+            'birthdate' => '2000-1-1'
         ]);
 
         \App\Models\User::factory(10)->create();

@@ -40,6 +40,6 @@ class WeatherService
     {
         $result = $this->request('current', $query);
 
-        return ['text' => $result->current->condition->text, 'icon' => $result->current->condition->icon];
+        return ['text' => $result->current->condition->text, 'icon' => 'https:' . $result->current->condition->icon];
     }
 }

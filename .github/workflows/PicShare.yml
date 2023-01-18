@@ -77,4 +77,4 @@ jobs:
     - name: Migrating the database
       run: cd Production && ./vendor/bin/sail artisan migrate --force
     - name: Making schedule work
-      run: cd Production && ./vendor/bin/sail artisan schedule:work
+      run: cd Production && nohup ./vendor/bin/sail artisan schedule:work &

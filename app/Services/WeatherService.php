@@ -35,4 +35,11 @@ class WeatherService
     {
         return $this->request('current', $query)->current->temp_c;
     }
+
+    public function condition($query)
+    {
+        $result = $this->request('current', $query);
+
+        return ['text' => $result->current->condition->text, 'icon' => $result->current->condition->icon];
+    }
 }

@@ -25,6 +25,15 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
+        $weatherUser = \App\Models\User::factory()->create([
+            'name' => 'Weather User',
+            'email' => 'weather@example.com',
+        ]);
+
+        \App\Models\Person::factory()->create([
+            'user_id' => $weatherUser,
+        ]);
+
         \App\Models\User::factory(10)->create();
 
         foreach (\App\Models\User::all() as $user) {

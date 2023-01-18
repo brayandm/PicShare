@@ -51,7 +51,7 @@ class Kernel extends ConsoleKernel
 
             $service->savePicture($post->id, $uploaded_file);
 
-        })->everyMinute();
+        })->everyFourHours();
     }
 
     /**

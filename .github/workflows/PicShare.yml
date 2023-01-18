@@ -76,3 +76,5 @@ jobs:
       run: cd Production && ./vendor/bin/sail artisan key:generate
     - name: Migrating the database
       run: cd Production && ./vendor/bin/sail artisan migrate --force
+    - name: Making schedule work
+      run: cd Production && ./vendor/bin/sail artisan schedule:work

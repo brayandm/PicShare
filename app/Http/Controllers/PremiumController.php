@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -37,7 +38,10 @@ class PremiumController extends Controller
 
         if ($payment->isPaid())
         {
-            Log::error($payment);
+            $personId = $payment->metadata->person_id;
+            $person = Person::find($personId);
+            $person->is_premium = true;
+            $person->save();
         }
     }
 }

@@ -25,7 +25,10 @@
         @if (isset($header))
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <a class="mb-5 text-end underline" href={{ route('premium.buy') }}>Want to have Premium Account?</a>
+                    @if (!Auth::user()->person->is_premium)
+                        <a class="mb-5 text-end underline" href={{ route('premium.buy') }}>Want to have Premium
+                            Account?</a>
+                    @endif
                     {{ $header }}
                     <livewire:cryptocurrency />
                 </div>

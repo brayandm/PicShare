@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PremiumController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +22,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::post('/dashboard/premium/webhook', [PremiumController::class, 'webhook'])->name('webhooks.mollie');
+
 Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::get('/dashboard/premium', [PremiumController::class, 'buy'])->name('premium.buy');
+    Route::get('/dashboard/premium/success', [PremiumController::class, 'success'])->name('premium.success');
     Route::get('/dashboard', [PostController::class, 'getAll'])->name('dashboard');
     Route::get('/dashboard/tag/{id}', [PostController::class, 'getAllByTag'])->name('dashboard.tag');
     Route::post('/dashboard/{id}', [PostController::class, 'like'])->name('dashboard.like');

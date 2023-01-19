@@ -15,10 +15,6 @@ $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
-$app->withFacades(true, ['Mollie\Laravel\Facades\Mollie' => 'Mollie']);
-
-$app->register(Mollie\Laravel\MollieServiceProvider::class);
-
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces

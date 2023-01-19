@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Mollie\Laravel\Facades\Mollie;
 
@@ -14,14 +15,14 @@ class PremiumController extends Controller
         $payment = Mollie::api()->payments->create([
             "amount" => [
                 "currency" => "EUR",
-                "value" => "10.00" // You must send the correct number of decimals, thus we enforce the use of strings
+                "value" => "1.00" // You must send the correct number of decimals, thus we enforce the use of strings
             ],
-            "description" => "Order #12345",
+            "description" => "Premium Account",
             "method" => 'creditcard',
             "redirectUrl" => route('dashboard'),
             "webhookUrl" => route('webhooks.mollie'),
             "metadata" => [
-                "order_id" => "123",
+                "person_id" => Auth::user()->person->id
             ],
         ]);
 
@@ -29,13 +30,14 @@ class PremiumController extends Controller
         return redirect($payment->getCheckoutUrl(), 303);
     }
 
-    public function success()
-    {
-        return view('premium.success');
-    }
-
     public function webhook(Request $request)
     {
-        return 200;
+        $paymentId = $request->input('id');
+        $payment = Mollie::api()->payments->get($paymentId);
+
+        if ($payment->isPaid())
+        {
+            Log::error($payment);
+        }
     }
 }

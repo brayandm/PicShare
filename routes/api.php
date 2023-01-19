@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PremiumController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/dashboard/premium/webhook', [PremiumController::class, 'webhook'])->name('webhooks.mollie');
+Route::get('/dashboard/premium/webhook', [PremiumController::class, 'webhook'])->name('webhooks.mollie');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

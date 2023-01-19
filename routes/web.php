@@ -22,7 +22,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::post('/dashboard/premium/webhook', [PremiumController::class, 'webhook'])->name('webhooks.mollie');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard/premium', [PremiumController::class, 'buy'])->name('premium.buy');

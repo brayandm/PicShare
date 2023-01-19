@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('birthdate')->nullable();
             $table->timestamps();
+
+            $table->index('user_id');
         });
     }
 

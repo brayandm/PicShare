@@ -20,6 +20,10 @@ return new class extends Migration
             $table->foreignId('comment_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('text');
             $table->timestamps();
+
+            $table->index('person_id');
+            $table->index('post_id');
+            $table->index('comment_id');
         });
     }
 

@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreignId('person_id')->constrained()->onDelete('cascade');
             $table->foreignId('post_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+
+            $table->index('person_id');
+            $table->index('post_id');
         });
     }
 

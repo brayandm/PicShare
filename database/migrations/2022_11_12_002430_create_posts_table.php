@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('text')->nullable();
             $table->integer('likes')->default(0);
             $table->timestamps();
+
+            $table->index('person_id');
         });
     }
 

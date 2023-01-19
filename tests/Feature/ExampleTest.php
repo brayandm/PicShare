@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 // use Illuminate\Foundation\Testing\RefreshDatabase;
+
+use App\Services\KucoinService;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase

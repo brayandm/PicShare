@@ -36,7 +36,7 @@
 
             <div class="flex flex-col">
                 @if ($active == 0)
-                    <input wire:model="message" type="text">
+                    <input wire:model="message" type="text" class="rounded-xl">
                     <button wire:click="send({{ $post->id }}, '{{ 'post' }}')"
                         class="self-end border ml-2 mt-4 p-2 rounded-xl bg-gray-200">Send</button>
                 @else
@@ -75,7 +75,7 @@
                     <p> {{ $comment[0]->text }}</p>
 
                     @if ($comment[2])
-                        <input wire:model="message" type="text">
+                        <input wire:model="message" type="text" class="rounded-xl bg-gray-200">
                         <button wire:click="send({{ $comment[0]->id }}, '{{ 'comment' }}')"
                             class="self-end border ml-2 mt-4 p-2 rounded-xl bg-gray-200">Send</button>
                     @else

@@ -36,6 +36,6 @@ class PremiumController extends Controller
 
     public function webhook(Request $request)
     {
-        Log::error($request);
+        return 200;
     }
 }

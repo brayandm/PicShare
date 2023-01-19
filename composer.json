@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.7",
         "league/flysystem-aws-s3-v3": "^3.12",
         "livewire/livewire": "^2.11",
+        "mollie/laravel-mollie": "^2.21",
         "spatie/laravel-backup": "^8.0",
         "symfony/http-client": "^6.1",
         "symfony/postmark-mailer": "^6.1"

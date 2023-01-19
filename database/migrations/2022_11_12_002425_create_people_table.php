@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('picture')->nullable();
             $table->string('description')->nullable();
             $table->string('birthdate')->nullable();
+            $table->boolean('is_premium')->default(false);
             $table->timestamps();
 
             $table->index('user_id');

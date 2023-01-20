@@ -20,7 +20,7 @@ jobs:
     - name: Removing containers
       run: cd Testing && docker rm $(docker ps -a -q)
     - name: Prunning images
-      run: cd Testing && docker image prune -all
+      run: cd Testing && docker image prune -a
     - name: Building the images
       run: cd Testing && ./vendor/bin/sail build --no-cache
     - uses: actions/checkout@v3
@@ -69,7 +69,7 @@ jobs:
     - name: Removing containers
       run: cd Testing && docker rm $(docker ps -a -q)
     - name: Prunning images
-      run: cd Testing && docker image prune -all
+      run: cd Testing && docker image prune -a
     - name: Building the images
       run: cd Testing && ./vendor/bin/sail build --no-cache
     - uses: actions/checkout@v3

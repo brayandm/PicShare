@@ -64,7 +64,7 @@ jobs:
     steps:
     - name: Dismounting the server
       run: cd Production && ./vendor/bin/sail down -v
-     - name: Removing the repository
+    - name: Removing the repository
       run: rm -R Production
     - uses: actions/checkout@v3
       with:

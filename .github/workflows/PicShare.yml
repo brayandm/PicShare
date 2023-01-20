@@ -17,14 +17,6 @@ jobs:
     steps:
     - name: Dismounting the server
       run: cd Testing && ./vendor/bin/sail down
-    - name: Stoping containers
-      run: cd Testing && docker stop $(docker ps -a -q)
-    - name: Removing containers
-      run: cd Testing && docker rm $(docker ps -a -q)
-    - name: Prunning images
-      run: cd Testing && docker image prune -a
-    - name: Building the images
-      run: cd Testing && ./vendor/bin/sail build --no-cache
     - uses: actions/checkout@v3
       with:
         path: Testing/
@@ -68,14 +60,6 @@ jobs:
     steps:
     - name: Dismounting the server
       run: cd Production && ./vendor/bin/sail down
-    - name: Stoping containers
-      run: cd Production && docker stop $(docker ps -a -q)
-    - name: Removing containers
-      run: cd Production && docker rm $(docker ps -a -q)
-    - name: Prunning images
-      run: cd Production && docker image prune -a
-    - name: Building the images
-      run: cd Production && ./vendor/bin/sail build --no-cache
     - uses: actions/checkout@v3
       with:
         clean: false

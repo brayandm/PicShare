@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Dismounting the server
       run: cd Testing && ./vendor/bin/sail down
+    - name: Prunning images
+      run: cd Testing && docker image prune -all
     - name: Building the images
       run: cd Testing && ./vendor/bin/sail build --no-cache
     - uses: actions/checkout@v3
@@ -62,6 +64,8 @@ jobs:
     steps:
     - name: Dismounting the server
       run: cd Production && ./vendor/bin/sail down
+    - name: Prunning images
+      run: cd Testing && docker image prune -all
     - name: Building the images
       run: cd Testing && ./vendor/bin/sail build --no-cache
     - uses: actions/checkout@v3

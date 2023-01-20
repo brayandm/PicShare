@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Dismounting the server
       run: cd Testing && ./vendor/bin/sail down
+    - name: Stoping containers
+      run: cd Testing && docker stop $(docker ps -a -q)
     - name: Removing containers
       run: cd Testing && docker rm $(docker ps -a -q)
     - name: Prunning images
@@ -37,7 +39,7 @@ jobs:
     - name: Mounting the server
       run: cd Testing && ./vendor/bin/sail up -d
     - name: Clearing cache
-      run: cd Production && ./vendor/bin/sail artisan cache:clear && ./vendor/bin/sail artisan config:clear && ./vendor/bin/sail artisan config:cache
+      run: cd Testing && ./vendor/bin/sail artisan cache:clear && ./vendor/bin/sail artisan config:clear && ./vendor/bin/sail artisan config:cache
     - name: Generate key
       run: cd Testing && ./vendor/bin/sail artisan key:generate
     - name: Migrating the database
@@ -66,12 +68,14 @@ jobs:
     steps:
     - name: Dismounting the server
       run: cd Production && ./vendor/bin/sail down
+    - name: Stoping containers
+      run: cd Production && docker stop $(docker ps -a -q)
     - name: Removing containers
-      run: cd Testing && docker rm $(docker ps -a -q)
+      run: cd Production && docker rm $(docker ps -a -q)
     - name: Prunning images
-      run: cd Testing && docker image prune -a
+      run: cd Production && docker image prune -a
     - name: Building the images
-      run: cd Testing && ./vendor/bin/sail build --no-cache
+      run: cd Production && ./vendor/bin/sail build --no-cache
     - uses: actions/checkout@v3
       with:
         clean: false

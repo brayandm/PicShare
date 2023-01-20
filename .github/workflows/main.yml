@@ -15,8 +15,7 @@ jobs:
     - picshare-runner
 
     steps:
-    - name: Dismounting the server
-      run: cd Testing && ./vendor/bin/sail down
+
     - name: Deleting the repository
       run: rm -R Testing
     - uses: actions/checkout@v3

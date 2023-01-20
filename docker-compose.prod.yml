@@ -1,4 +1,4 @@
-# For more information: https://laravel.com/docs/sail
+# For more information: https://laravel.com/docs/sai
 version: '3'
 services:
   laravel.test:

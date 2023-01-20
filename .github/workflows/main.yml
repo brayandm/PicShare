@@ -70,7 +70,7 @@ jobs:
       with:
         clean: false
         path: Production/
-     - name: Building the images
+    - name: Building the images
       run: cd Production && ./vendor/bin/sail build --no-cache
     - name: Installing dependencies
       run: cd Production && COMPOSER_ALLOW_SUPERUSER=1 composer install

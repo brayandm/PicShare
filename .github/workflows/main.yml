@@ -15,14 +15,9 @@ jobs:
     - picshare-runner
 
     steps:
-
-    - name: Deleting the repository
-      run: rm -R Testing
     - uses: actions/checkout@v3
       with:
         path: Testing/
-    - name: Building the images
-      run: cd Testing && ./vendor/bin/sail build --no-cache
     - name: Installing dependencies
       run: cd Testing && COMPOSER_ALLOW_SUPERUSER=1 composer install
     - name: Copying .env.example to .env
@@ -61,16 +56,10 @@ jobs:
     - picshare-runner
 
     steps:
-    - name: Dismounting the server
-      run: cd Production && ./vendor/bin/sail down
-    - name: Deleting the repository
-      run: rm -R Production
     - uses: actions/checkout@v3
       with:
         clean: false
         path: Production/
-    - name: Building the images
-      run: cd Production && ./vendor/bin/sail build --no-cache
     - name: Installing dependencies
       run: cd Production && COMPOSER_ALLOW_SUPERUSER=1 composer install
     - name: Setting up docker compose

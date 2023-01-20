@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Dismounting the server
       run: cd Testing && ./vendor/bin/sail down
+    - name: Removing containers
+      run: cd Testing && docker rm $(docker ps -a -q)
     - name: Prunning images
       run: cd Testing && docker image prune -all
     - name: Building the images
@@ -64,6 +66,8 @@ jobs:
     steps:
     - name: Dismounting the server
       run: cd Production && ./vendor/bin/sail down
+    - name: Removing containers
+      run: cd Testing && docker rm $(docker ps -a -q)
     - name: Prunning images
       run: cd Testing && docker image prune -all
     - name: Building the images

@@ -17,8 +17,8 @@ jobs:
     steps:
     - name: Dismounting the server
       run: cd Testing && ./vendor/bin/sail down -v
-    - name: Building the images
-      run: cd Testing && ./vendor/bin/sail build --no-cache
+    - name: Removing the repository
+      run: rm -R Testing
     - uses: actions/checkout@v3
       with:
         path: Testing/
@@ -28,6 +28,8 @@ jobs:
       run: cd Testing && cp .env.example .env
     - name: Stopping apache server
       run: sudo service apache2 stop
+    - name: Building the images
+      run: cd Testing && ./vendor/bin/sail build --no-cache
     - name: Directory Permissions
       run: chmod -R 777 Testing/
     - name: Mounting the server
@@ -62,8 +64,8 @@ jobs:
     steps:
     - name: Dismounting the server
       run: cd Production && ./vendor/bin/sail down -v
-    - name: Building the images
-      run: cd Production && ./vendor/bin/sail build --no-cache
+     - name: Removing the repository
+      run: rm -R Production
     - uses: actions/checkout@v3
       with:
         clean: false
@@ -74,6 +76,8 @@ jobs:
       run: cd Production && cp -f docker-compose.prod.yml docker-compose.yml
     - name: Setting up production environment
       run: cd Production && echo "${{ secrets.WEBSITE_ENV_PRODUCTION }}" > .env
+    - name: Building the images
+      run: cd Production && ./vendor/bin/sail build --no-cache
     - name: Directory Permissions
       run: chmod -R 777 Production/
     - name: Mounting the server

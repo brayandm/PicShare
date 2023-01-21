@@ -26,6 +26,7 @@ services:
             - mysql
             - redis
             - mailhog
+            - phpmyadmin
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -77,6 +78,8 @@ services:
             PMA_HOST: mysql
         networks:
             - sail
+        depends_on:
+            - mysql
 networks:
     sail:
         driver: bridge

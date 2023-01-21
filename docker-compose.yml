@@ -70,8 +70,6 @@ services:
         image: phpmyadmin/phpmyadmin
         links:
             - mysql:mysql
-        ports:
-            - 8082:80
         environment:
             MYSQL_USERNAME: "${DB_USERNAME}"
             MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"

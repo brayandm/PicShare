@@ -76,3 +76,5 @@ jobs:
       run: cd Testing && ./vendor/bin/sail artisan cache:clear && ./vendor/bin/sail artisan config:clear
     - name: Generate key
       run: cd Production && ./vendor/bin/sail artisan key:generate
+    - name: Migrating the database
+      run: cd Testing && ./vendor/bin/sail artisan migrate --force

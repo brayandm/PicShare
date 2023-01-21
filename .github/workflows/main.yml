@@ -58,8 +58,6 @@ jobs:
     steps:
     - name: Dismounting the server
       run: cd Production && ./vendor/bin/sail down -v
-    - name: Removing the repository
-      run: rm -R Production
     - uses: actions/checkout@v3
       with:
         clean: false
@@ -76,5 +74,3 @@ jobs:
       run: cd Production && ./vendor/bin/sail up -d
     - name: Generate key
       run: cd Production && ./vendor/bin/sail artisan key:generate
-    - name: Migrating the database
-      run: cd Production && ./vendor/bin/sail artisan migrate --force

@@ -30,8 +30,6 @@ jobs:
       run: chmod -R 777 Testing/
     - name: Mounting the server
       run: cd Testing && ./vendor/bin/sail up -d
-    - name: Clearing cache
-      run: cd Testing && ./vendor/bin/sail artisan cache:clear && ./vendor/bin/sail artisan config:clear
     - name: Generate key
       run: cd Testing && ./vendor/bin/sail artisan key:generate
     - name: Migrating the database
@@ -74,8 +72,6 @@ jobs:
       run: chmod -R 777 Production/
     - name: Mounting the server
       run: cd Production && ./vendor/bin/sail up -d
-    - name: Clearing cache
-      run: cd Production && ./vendor/bin/sail artisan cache:clear && ./vendor/bin/sail artisan config:clear
     - name: Generate key
       run: cd Production && ./vendor/bin/sail artisan key:generate
     - name: Migrating the database

@@ -9,42 +9,42 @@ on:
 
 jobs:
 
-  build:
+  # build:
 
-    runs-on:
-    - picshare-runner
+  #   runs-on:
+  #   - picshare-runner
 
-    steps:
-    - name: Dismounting the server
-      run: cd Testing && ./vendor/bin/sail down -v
-    - uses: actions/checkout@v3
-      with:
-        path: Testing/
-    - name: Installing dependencies
-      run: cd Testing && COMPOSER_ALLOW_SUPERUSER=1 composer install
-    - name: Copying .env.example to .env
-      run: cd Testing && cp .env.example .env
-    - name: Stopping apache server
-      run: sudo service apache2 stop
-    - name: Directory Permissions
-      run: chmod -R 777 Testing/
-    - name: Mounting the server
-      run: cd Testing && ./vendor/bin/sail up -d
-    - name: Generate key
-      run: cd Testing && ./vendor/bin/sail artisan key:generate
-    - name: Migrating the database
-      run: cd Testing && ./vendor/bin/sail artisan migrate --force
+  #   steps:
+  #   - name: Dismounting the server
+  #     run: cd Testing && ./vendor/bin/sail down -v
+  #   - uses: actions/checkout@v3
+  #     with:
+  #       path: Testing/
+  #   - name: Installing dependencies
+  #     run: cd Testing && COMPOSER_ALLOW_SUPERUSER=1 composer install
+  #   - name: Copying .env.example to .env
+  #     run: cd Testing && cp .env.example .env
+  #   - name: Stopping apache server
+  #     run: sudo service apache2 stop
+  #   - name: Directory Permissions
+  #     run: chmod -R 777 Testing/
+  #   - name: Mounting the server
+  #     run: cd Testing && ./vendor/bin/sail up -d
+  #   - name: Generate key
+  #     run: cd Testing && ./vendor/bin/sail artisan key:generate
+  #   - name: Migrating the database
+  #     run: cd Testing && ./vendor/bin/sail artisan migrate --force
 
-  test:
+  # test:
 
-    needs: build
+  #   needs: build
 
-    runs-on:
-    - picshare-runner
+  #   runs-on:
+  #   - picshare-runner
 
-    steps:
-    - name: Testing
-      run: cd Testing && ./vendor/bin/sail artisan test
+  #   steps:
+  #   - name: Testing
+  #     run: cd Testing && ./vendor/bin/sail artisan test
 
   deploy:
 

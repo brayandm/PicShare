@@ -81,6 +81,10 @@ class PostService
     {
         $post = Post::find($id);
 
+        if ($post->person_id != Auth::user()->person->id) {
+            return;
+        }
+
         $post->delete();
 
         return $post;

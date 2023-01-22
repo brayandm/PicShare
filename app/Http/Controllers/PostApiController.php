@@ -15,6 +15,21 @@ class PostApiController extends Controller
         $this->postService = $postService;
     }
 
+    public function index()
+    {
+        return $this->postService->getAll(5);
+    }
+
+    public function get($id)
+    {
+        return $this->postService->get($id);
+    }
+
+    public function delete($id)
+    {
+        return $this->postService->delete($id);
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

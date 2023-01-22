@@ -79,7 +79,11 @@ class PostService
 
     public function delete($id)
     {
-        Post::find($id)->delete();
+        $post = Post::find($id);
+
+        $post->delete();
+
+        return $post;
     }
 
     public function create($fields)

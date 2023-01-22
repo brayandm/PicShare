@@ -39,4 +39,12 @@ class PersonService
     {
         Auth::user()->person->update($fields);
     }
+
+    public function generateToken()
+    {
+        Auth::user()->tokens()->delete();
+        $token = Auth::user()->createToken('Bearer');
+
+        return $token->plainTextToken;
+    }
 }

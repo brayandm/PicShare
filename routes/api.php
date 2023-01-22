@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostApiController;
 use App\Http\Controllers\PremiumController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,8 @@ Route::post('/dashboard/premium/webhook', [PremiumController::class, 'webhook'])
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::post('/myposts/create', [PostApiController::class, 'store'])->name('api.myposts.store');
+});
+

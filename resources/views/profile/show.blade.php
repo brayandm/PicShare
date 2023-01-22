@@ -21,6 +21,12 @@
 
                     <a href={{ route('profile.edit') }} class="self-end border p-2 rounded-xl bg-gray-200">Edit
                         Profile</a>
+
+                    <a href={{ route('profile.getToken') }}
+                        class="mt-3 self-end border p-2 rounded-xl bg-gray-200">Generate new
+                        API
+                        Token
+                    </a>
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\PersonService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PersonController extends Controller
 {
@@ -53,5 +54,12 @@ class PersonController extends Controller
         $this->personService->update($validated);
 
         return redirect()->route('profile.show');
+    }
+
+    public function getToken()
+    {
+        $token = $this->personService->generateToken();
+
+        return view('profile.token', ['token' => $token]);
     }
 }

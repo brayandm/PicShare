@@ -30,11 +30,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'weather@example.com',
         ]);
 
-        \App\Models\Person::where('user_id', $weatherUser->id)->first()->update([
-            'description' => 'This is a weather service',
-            'birthdate' => '2000-1-1'
-        ]);
-
         \App\Models\User::factory(10)->create();
 
         foreach (\App\Models\User::all() as $user) {
@@ -52,6 +47,18 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+        \App\Models\Person::where('user_id', $exampleUser->id)->first()->update([
+            'is_premium' => false,
+            'description' => 'This is a test user',
+            'birthdate' => '2000-1-1'
+        ]);
+
+        \App\Models\Person::where('user_id', $weatherUser->id)->first()->update([
+            'is_premium' => true,
+            'description' => 'This is a weather service',
+            'birthdate' => '2000-1-1'
+        ]);
 
         $people = \App\Models\Person::all();
 

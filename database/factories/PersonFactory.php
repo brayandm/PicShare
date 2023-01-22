@@ -19,6 +19,7 @@ class PersonFactory extends Factory
         return [
             'description' => fake()->realText(200),
             'birthdate' => fake()->date(),
+            'is_premium' => fake()->numberBetween(0, 1),
         ];
     }
 }

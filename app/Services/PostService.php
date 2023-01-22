@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Person;
 use App\Models\Post;
 use App\Models\Tag;
 use Exception;
@@ -14,7 +15,8 @@ class PostService
 {
     public function getAll($pageSize)
     {
-        return Post::orderByDesc('updated_at')->with('person.user')->paginate($pageSize);
+        $premiumAccounts = Person::where('is_premium', true)->pluck('id');
+        return Post::orderByDesc('updated_at')->whereIn('person_id', $premiumAccounts)->with('person')->paginate($pageSize);
     }
 
     public function getAllByTag($pageSize, $id)

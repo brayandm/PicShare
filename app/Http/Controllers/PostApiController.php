@@ -35,4 +35,25 @@ class PostApiController extends Controller
 
         return $post;
     }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'header' => 'max:255',
+            'text' => 'max:255',
+            'tags' => 'max:255',
+        ]);
+
+        $request->validate([
+            'picture' => 'image|max:1024',
+        ]);
+
+        $post = $this->postService->update($id, $validated);
+
+        if ($request->picture) {
+            $this->postService->savePicture($post->id, $request->file('picture'));
+        }
+
+        return $post;
+    }
 }

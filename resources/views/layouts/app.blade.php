@@ -31,7 +31,7 @@
                                 Account?</p>
                         </a>
                     @else
-                        <p class="text-xl">You have a Premium Account</p>
+                        <p class="mb-5 text-end underline text-xl">You have a Premium Account</p>
                     @endif
                     {{ $header }}
                     <livewire:cryptocurrency />

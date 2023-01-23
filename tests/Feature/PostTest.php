@@ -55,4 +55,30 @@ class PostTest extends TestCase
             'text' => 'This is a text',
         ]);
     }
+
+    public function testUpdateMyPosts()
+    {
+        //PREPARATION
+        $this->actingAs($this->exampleUser);
+
+        $post = Post::factory()->create([
+            'header' => 'This is a header',
+            'text' => 'This is a text',
+            'person_id' => $this->examplePerson->id,
+        ]);
+
+        //EXECUTION
+        $response = $this->put(route('myposts.update', ['id' => $post->id]), [
+            'header' => 'This is a header updated',
+            'text' => 'This is a text updated',
+            'tags' => 'testing, updated',
+        ]);
+
+        //ASSERTION
+        $this->assertDatabaseHas('posts', [
+            'person_id' => $this->examplePerson->id,
+            'header' => 'This is a header updated',
+            'text' => 'This is a text updated',
+        ]);
+    }
 }

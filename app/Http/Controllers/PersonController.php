@@ -60,6 +60,6 @@ class PersonController extends Controller
     {
         $token = $this->personService->generateToken();
 
-        return view('profile.token', ['token' => $token]);
+        return view('profile.token', ['token' => $token);
     }
 }

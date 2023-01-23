@@ -19,7 +19,7 @@ abstract class TestCase extends BaseTestCase
 
         $this->exampleUser = User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => 'testing@example.com',
         ]);
 
         $this->examplePerson = Person::where('user_id', $this->exampleUser->id)->first();

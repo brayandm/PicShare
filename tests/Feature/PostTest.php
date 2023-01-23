@@ -141,5 +141,53 @@ class PostTest extends TestCase
             'post_id' => $post->id,
             'tag_id' => $tag3->id,
         ]);
+
+        $this->assertDatabaseHas('post_tag', [
+            'post_id' => $post->id,
+            'tag_id' => $tag4->id,
+        ]);
+    }
+
+    public function testDeleteMyPosts()
+    {
+        //PREPARATION
+        $this->actingAs($this->exampleUser);
+
+        $tag1 = Tag::factory()->create(['keyword' => 'testing']);
+        $tag2 = Tag::factory()->create(['keyword' => 'myposts']);
+        $tag3 = Tag::factory()->create(['keyword' => 'picshare']);
+
+        $post = Post::factory()->create([
+            'header' => 'This is a header',
+            'text' => 'This is a text',
+            'person_id' => $this->examplePerson->id,
+        ]);
+
+        $post->tags()->sync([$tag1->id, $tag2->id, $tag3->id]);
+
+        //EXECUTION
+        $response = $this->delete(route('myposts.delete', ['id' => $post->id]));
+
+        //ASSERTION
+        $this->assertDatabaseMissing('posts', [
+            'person_id' => $this->examplePerson->id,
+            'header' => 'This is a header',
+            'text' => 'This is a text',
+        ]);
+
+        $this->assertDatabaseMissing('post_tag', [
+            'post_id' => $post->id,
+            'tag_id' => $tag1->id,
+        ]);
+
+        $this->assertDatabaseMissing('post_tag', [
+            'post_id' => $post->id,
+            'tag_id' => $tag2->id,
+        ]);
+
+        $this->assertDatabaseMissing('post_tag', [
+            'post_id' => $post->id,
+            'tag_id' => $tag3->id,
+        ]);
     }
 }

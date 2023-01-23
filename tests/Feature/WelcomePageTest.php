@@ -16,6 +16,11 @@ class WelcomePageTest extends TestCase
 
     public function testWelcomePage()
     {
+        //EXECUTION
+        $response = $this->get(route('welcome'));
 
+        //ASSERTION
+        $response->assertSee('Log in');
+        $response->assertSee('Register');
     }
 }

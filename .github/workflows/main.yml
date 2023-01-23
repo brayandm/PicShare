@@ -73,8 +73,10 @@ jobs:
     - name: Mounting the server
       run: cd Production && ./vendor/bin/sail up -d
     - name: Clearing cache
-      run: cd Testing && ./vendor/bin/sail artisan cache:clear && ./vendor/bin/sail artisan config:clear
+      run: cd Production && ./vendor/bin/sail artisan cache:clear && ./vendor/bin/sail artisan config:clear
     - name: Generate key
       run: cd Production && ./vendor/bin/sail artisan key:generate
     - name: Migrating the database
-      run: cd Testing && ./vendor/bin/sail artisan migrate --force
+      run: cd Production && ./vendor/bin/sail artisan migrate --force
+    - name: Scheduling
+      run: cd Production && ./vendor/bin/sail schedule:work

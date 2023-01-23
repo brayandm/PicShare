@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -26,6 +27,12 @@ class PostTest extends TestCase
             'person_id' => $this->examplePerson->id,
         ]);
 
+        $tag1 = Tag::factory()->create(['keyword' => 'testing']);
+        $tag2 = Tag::factory()->create(['keyword' => 'myposts']);
+        $tag3 = Tag::factory()->create(['keyword' => 'picshare']);
+
+        $post->tags()->sync([$tag1->id, $tag2->id, $tag3->id]);
+
         //EXECUTION
         $response = $this->get(route('myposts.show'));
 
@@ -34,6 +41,9 @@ class PostTest extends TestCase
         $response->assertSee($post->header);
         $response->assertSee($post->text);
         $response->assertSee($this->exampleUser->name);
+        $response->assertSee('testing');
+        $response->assertSee('myposts');
+        $response->assertSee('picshare');
     }
 
     public function testCreateMyPosts()
@@ -41,11 +51,15 @@ class PostTest extends TestCase
         //PREPARATION
         $this->actingAs($this->exampleUser);
 
+        $tag1 = Tag::factory()->create(['keyword' => 'testing']);
+        $tag2 = Tag::factory()->create(['keyword' => 'myposts']);
+        $tag3 = Tag::factory()->create(['keyword' => 'picshare']);
+
         //EXECUTION
         $response = $this->post(route('myposts.store'), [
             'header' => 'This is a header',
             'text' => 'This is a text',
-            'tags' => 'testing, myposts, picshare',
+            'tags' => $tag1->keyword . ', ' . $tag2->keyword . ', ' . $tag3->keyword,
         ]);
 
         //ASSERTION
@@ -53,6 +67,25 @@ class PostTest extends TestCase
             'person_id' => $this->examplePerson->id,
             'header' => 'This is a header',
             'text' => 'This is a text',
+        ]);
+
+        $post = Post::find([
+            'person_id' => $this->examplePerson->id,
+            'header' => 'This is a header',
+            'text' => 'This is a text'
+        ])->first();
+
+        $this->assertDatabaseHas('post_tag', [
+            'post_id' => $post->id,
+            'tag_id' => $tag1->id,
+        ]);
+        $this->assertDatabaseHas('post_tag', [
+            'post_id' => $post->id,
+            'tag_id' => $tag2->id,
+        ]);
+        $this->assertDatabaseHas('post_tag', [
+            'post_id' => $post->id,
+            'tag_id' => $tag3->id,
         ]);
     }
 

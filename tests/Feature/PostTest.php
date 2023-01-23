@@ -17,6 +17,7 @@ class PostTest extends TestCase
 
     public function testGetMyPosts()
     {
+        //PREPARATION
         $this->actingAs($this->exampleUser);
 
         $post = Post::factory()->create([
@@ -25,11 +26,33 @@ class PostTest extends TestCase
             'person_id' => $this->examplePerson->id,
         ]);
 
+        //EXECUTION
         $response = $this->get(route('myposts.show'));
 
+        //ASSERTION
         $response->assertSee('myposts');
         $response->assertSee($post->header);
         $response->assertSee($post->text);
         $response->assertSee($this->exampleUser->name);
+    }
+
+    public function testCreateMyPosts()
+    {
+        //PREPARATION
+        $this->actingAs($this->exampleUser);
+
+        //EXECUTION
+        $response = $this->post(route('myposts.store'), [
+            'header' => 'This is a header',
+            'text' => 'This is a text',
+            'tags' => 'testing, myposts, picshare',
+        ]);
+
+        //ASSERTION
+        $this->assertDatabaseHas('posts', [
+            'person_id' => $this->examplePerson->id,
+            'header' => 'This is a header',
+            'text' => 'This is a text',
+        ]);
     }
 }

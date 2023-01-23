@@ -94,11 +94,18 @@ class PostTest extends TestCase
         //PREPARATION
         $this->actingAs($this->exampleUser);
 
+        $tag1 = Tag::factory()->create(['keyword' => 'testing']);
+        $tag2 = Tag::factory()->create(['keyword' => 'myposts']);
+        $tag3 = Tag::factory()->create(['keyword' => 'picshare']);
+        $tag4 = Tag::factory()->create(['keyword' => 'updated']);
+
         $post = Post::factory()->create([
             'header' => 'This is a header',
             'text' => 'This is a text',
             'person_id' => $this->examplePerson->id,
         ]);
+
+        $post->tags()->sync([$tag1->id, $tag2->id, $tag3->id]);
 
         //EXECUTION
         $response = $this->put(route('myposts.update', ['id' => $post->id]), [
@@ -108,10 +115,31 @@ class PostTest extends TestCase
         ]);
 
         //ASSERTION
+        $this->assertDatabaseMissing('posts', [
+            'person_id' => $this->examplePerson->id,
+            'header' => 'This is a header update',
+            'text' => 'This is a text update',
+        ]);
+
         $this->assertDatabaseHas('posts', [
             'person_id' => $this->examplePerson->id,
             'header' => 'This is a header updated',
             'text' => 'This is a text updated',
+        ]);
+
+        $this->assertDatabaseHas('post_tag', [
+            'post_id' => $post->id,
+            'tag_id' => $tag1->id,
+        ]);
+
+        $this->assertDatabaseMissing('post_tag', [
+            'post_id' => $post->id,
+            'tag_id' => $tag2->id,
+        ]);
+
+        $this->assertDatabaseMissing('post_tag', [
+            'post_id' => $post->id,
+            'tag_id' => $tag3->id,
         ]);
     }
 }

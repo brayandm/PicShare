@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
 use App\Services\PostService;
 use Illuminate\Http\Request;
 
@@ -30,19 +31,15 @@ class PostController extends Controller
         return $this->postService->delete($id);
     }
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $validated = $request->validate([
-            'header' => 'max:255',
-            'text' => 'max:255',
-            'tags' => 'max:255',
-        ]);
+        $data = [
+            'header' => $request->header,
+            'text' => $request->text,
+            'tags' => $request->tags,
+        ];
 
-        $request->validate([
-            'picture' => 'image|max:1024',
-        ]);
-
-        $post = $this->postService->create($validated);
+        $post = $this->postService->create($data);
 
         if ($request->picture) {
             $this->postService->savePicture($post->id, $request->file('picture'));
@@ -51,19 +48,15 @@ class PostController extends Controller
         return $post;
     }
 
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
-        $validated = $request->validate([
-            'header' => 'max:255',
-            'text' => 'max:255',
-            'tags' => 'max:255',
-        ]);
+        $data = [
+            'header' => $request->header,
+            'text' => $request->text,
+            'tags' => $request->tags,
+        ];
 
-        $request->validate([
-            'picture' => 'image|max:1024',
-        ]);
-
-        $post = $this->postService->update($id, $validated);
+        $post = $this->postService->update($id, $data);
 
         if ($request->picture) {
             $this->postService->savePicture($post->id, $request->file('picture'));

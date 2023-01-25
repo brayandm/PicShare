@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Controllers\Controller;
 use App\Services\PostService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-class PostApiController extends Controller
+class PostController extends Controller
 {
     private PostService $postService;
 

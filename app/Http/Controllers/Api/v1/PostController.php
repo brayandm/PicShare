@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Http\Resources\PostResource;
+use App\Models\Post;
 use App\Services\PostService;
 use Illuminate\Http\Request;
 
@@ -18,17 +20,17 @@ class PostController extends Controller
 
     public function index()
     {
-        return $this->postService->getAll(5);
+        return PostResource::collection($this->postService->getAll(5));
     }
 
     public function get($id)
     {
-        return $this->postService->get($id);
+        return new PostResource($this->postService->get($id));
     }
 
     public function delete($id)
     {
-        return $this->postService->delete($id);
+        return new PostResource($this->postService->delete($id));
     }
 
     public function store(PostRequest $request)
@@ -45,7 +47,7 @@ class PostController extends Controller
             $this->postService->savePicture($post->id, $request->file('picture'));
         }
 
-        return $post;
+        return new PostResource(Post::findOrFail($post->id));
     }
 
     public function update(PostRequest $request, $id)
@@ -62,6 +64,6 @@ class PostController extends Controller
             $this->postService->savePicture($post->id, $request->file('picture'));
         }
 
-        return $post;
+        return new PostResource(Post::findOrFail($post->id));
     }
 }

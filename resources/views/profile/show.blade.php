@@ -27,6 +27,10 @@
                         API
                         Token
                     </a>
+
+                    <a href={{ route('profile.apiDocs') }} class="mt-3 self-end border p-2 rounded-xl bg-gray-200">API
+                        Documentation
+                    </a>
                 </div>
             </div>
         </div>

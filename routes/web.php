@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/profile/edit', [PersonController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/edit', [PersonController::class, 'update'])->name('profile.update');
     Route::get('/profile/token', [PersonController::class, 'getToken'])->name('profile.getToken');
+    Route::get('/profile/api/docs', [PersonController::class, 'getApiDocs'])->name('profile.apiDocs');
     Route::get('/myposts/show', [PostController::class, 'getForCurrentPerson'])->name('myposts.show');
     Route::get('/myposts/edit/{id}', [PostController::class, 'edit'])->name('myposts.edit');
     Route::put('/myposts/edit/{id}', [PostController::class, 'update'])->name('myposts.update');

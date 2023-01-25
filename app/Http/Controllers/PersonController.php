@@ -62,4 +62,9 @@ class PersonController extends Controller
 
         return view('profile.token', ['token' => $token]);
     }
+
+    public function getApiDocs()
+    {
+        return redirect('/api/docs');
+    }
 }
